@@ -27,27 +27,27 @@ public class MainFrame extends javax.swing.JFrame {
         customInit();
     }
 
-    private void customInit()
-    {
+    private void customInit() {
         
     }
     
-    public void eventUpdated(Event event)
-    {
+    public void eventUpdated(Event event) {
         if(event.getIsDeleted()){
             events.remove(event.getId());
         }
         else {
             events.put(event.getId(), event);
         }
-        List<Integer> ids = new ArrayList<Integer>(events.keySet());
+        List<Integer> ids = new ArrayList<>(events.keySet());
         Collections.sort(ids);
         List<ListData> eventList = new ArrayList<>();
-        for(Integer id:ids){
+        
+        for(Integer id : ids){
             Event e = events.get(id);
             System.out.println("Event: "+id+", name: "+e.getName());
             eventList.add(new ListData(e.getName(), e));
         }
+        
         model.setData(eventList);
         jList1 = new JList<>(model);
         jList1.addListSelectionListener(new CustomListSelectionListner());
@@ -72,7 +72,6 @@ public class MainFrame extends javax.swing.JFrame {
 
         jButton1 = new javax.swing.JButton();
         jpEventViewHolder = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
         jpListPanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
@@ -86,25 +85,18 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        jpEventViewHolder.setBackground(new java.awt.Color(204, 204, 255));
+        jpEventViewHolder.setBackground(new java.awt.Color(204, 204, 204));
 
         javax.swing.GroupLayout jpEventViewHolderLayout = new javax.swing.GroupLayout(jpEventViewHolder);
         jpEventViewHolder.setLayout(jpEventViewHolderLayout);
         jpEventViewHolderLayout.setHorizontalGroup(
             jpEventViewHolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 495, Short.MAX_VALUE)
+            .addGap(0, 883, Short.MAX_VALUE)
         );
         jpEventViewHolderLayout.setVerticalGroup(
             jpEventViewHolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 547, Short.MAX_VALUE)
         );
-
-        jButton2.setText("Delete");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
 
         model = new ListDataModel();
         jList1.setModel(model);
@@ -123,8 +115,8 @@ public class MainFrame extends javax.swing.JFrame {
             jpListPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpListPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -132,37 +124,31 @@ public class MainFrame extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1)
-                            .addComponent(jpListPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(jButton1)
+                    .addComponent(jpListPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jpEventViewHolder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jpEventViewHolder, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(15, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jpEventViewHolder, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jpListPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
-                        .addComponent(jButton2)
-                        .addContainerGap())
-                    .addComponent(jpEventViewHolder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jpListPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
         EventView eventView = new EventView(mainFrame);
         jList1.setSelectedIndex(-1);
         jpEventViewHolder.removeAll();
@@ -171,10 +157,6 @@ public class MainFrame extends javax.swing.JFrame {
         jpEventViewHolder.revalidate();
         jpEventViewHolder.repaint();
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -214,7 +196,6 @@ public class MainFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JList<String> jList1;
     private ListDataModel model;
     private javax.swing.JScrollPane jScrollPane1;

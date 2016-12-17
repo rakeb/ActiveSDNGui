@@ -16,7 +16,7 @@ public class Event {
     private Integer id;
     private Boolean isDeleted = false;
     public static Integer currentEventId = 0;
-    private HashMap<Integer, Signature> signatures = new HashMap<Integer, Signature>();
+    private HashMap<Integer, Signature> signatures = new HashMap<>();
 
     public Event(String name, Integer id) {
         this.name = name;

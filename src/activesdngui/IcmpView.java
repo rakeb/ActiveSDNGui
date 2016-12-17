@@ -9,19 +9,21 @@ import java.util.HashMap;
 
 /**
  *
- * @author Mazharul
+ * @author mislam7
  */
-public class IpView extends  GenericSignaturePanel{
+public class IcmpView extends GenericSignaturePanel {
 
-    public static String sigName = "IP";
+    public static String sigName = "ICMP";
 
     public static final String TOS = "tos";
     public static final String TTL = "ttl";
     public static final String PROTOCOL = "protocol";
     public static final String SOURCE_IP = "sourceIp";
     public static final String DESTINATION_IP = "destinationIp";
-    
-    public IpView() {
+    /**
+     * Creates new form IcmpView
+     */
+    public IcmpView() {
         initComponents();
     }
 
@@ -36,17 +38,17 @@ public class IpView extends  GenericSignaturePanel{
 
         jckAddSignature = new javax.swing.JCheckBox();
         jLabel1 = new javax.swing.JLabel();
-        jtfTos = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        jtfTos = new javax.swing.JTextField();
         jtfTtl = new javax.swing.JTextField();
         jtfProtocol = new javax.swing.JTextField();
         jtfSourceIp = new javax.swing.JTextField();
         jtfDestinationIp = new javax.swing.JTextField();
 
-        setPreferredSize(new java.awt.Dimension(420, 230));
+        setPreferredSize(new java.awt.Dimension(320, 220));
 
         jckAddSignature.setText("Add Signature");
 
@@ -60,35 +62,29 @@ public class IpView extends  GenericSignaturePanel{
 
         jLabel5.setText("Destination Ip");
 
-        jtfTtl.setSize(new java.awt.Dimension(80, 25));
-
-        jtfProtocol.setSize(new java.awt.Dimension(80, 25));
-
-        jtfSourceIp.setSize(new java.awt.Dimension(80, 25));
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addComponent(jckAddSignature)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addComponent(jLabel2)
-                    .addComponent(jLabel5)
+                    .addComponent(jLabel3)
                     .addComponent(jLabel4)
-                    .addComponent(jLabel3))
+                    .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jtfTtl, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
-                    .addComponent(jtfProtocol)
-                    .addComponent(jtfSourceIp)
-                    .addComponent(jtfDestinationIp, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
-                    .addComponent(jtfTos))
-                .addContainerGap(26, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jckAddSignature)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jtfSourceIp, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
+                    .addComponent(jtfProtocol, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jtfTtl, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jtfTos, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jtfDestinationIp))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -111,10 +107,10 @@ public class IpView extends  GenericSignaturePanel{
                     .addComponent(jLabel4)
                     .addComponent(jtfSourceIp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(jtfDestinationIp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -135,7 +131,7 @@ public class IpView extends  GenericSignaturePanel{
 
     @Override
     public Signature parseData() {
-        Signature signature = new Signature(sigName, Signature.IP_ID);
+        Signature signature = new Signature(sigName, Signature.ICMP_ID);
         
         signature.setIsValid(jckAddSignature.isSelected());
         
@@ -166,6 +162,6 @@ public class IpView extends  GenericSignaturePanel{
 
     @Override
     public Integer getSignatureId() {
-        return Signature.IP_ID;
+        return Signature.ICMP_ID;
     }
 }

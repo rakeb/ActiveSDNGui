@@ -3,7 +3,7 @@
 <Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
   <Properties>
     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-      <Dimension value="[420, 200]"/>
+      <Dimension value="[320, 220]"/>
     </Property>
   </Properties>
   <AuxValues>
@@ -21,24 +21,28 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <Component id="jckAddSignature" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                  <Component id="jtfSourcePort" alignment="0" pref="163" max="32767" attributes="0"/>
-                  <Component id="jtfDestinationPort" alignment="0" max="32767" attributes="0"/>
-                  <Component id="jtfSequenceNumber" max="32767" attributes="0"/>
+                  <Component id="jtfSourceIp" alignment="0" pref="164" max="32767" attributes="0"/>
+                  <Component id="jtfProtocol" alignment="0" max="32767" attributes="0"/>
+                  <Component id="jtfTtl" alignment="0" max="32767" attributes="0"/>
+                  <Component id="jtfTos" alignment="0" max="32767" attributes="0"/>
+                  <Component id="jtfDestinationIp" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace min="0" pref="14" max="32767" attributes="0"/>
-          </Group>
-          <Group type="102" attributes="0">
-              <Component id="jckAddSignature" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="35" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -49,49 +53,73 @@
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jtfSourcePort" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jtfTos" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jtfDestinationPort" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jtfTtl" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jtfSequenceNumber" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jtfProtocol" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="14" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jtfSourceIp" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jtfDestinationIp" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="31" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JLabel" name="jLabel1">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Source Port"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="jtfSourcePort">
-    </Component>
     <Component class="javax.swing.JCheckBox" name="jckAddSignature">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Add signature"/>
+        <Property name="text" type="java.lang.String" value="Add Signature"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="TOS"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Destination Port"/>
+        <Property name="text" type="java.lang.String" value="TTL"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="jtfDestinationPort">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Sequence Number"/>
+        <Property name="text" type="java.lang.String" value="Protocol"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jtfSequenceNumber">
+    <Component class="javax.swing.JLabel" name="jLabel4">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Source Ip"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel5">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Destination Ip"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="jtfTos">
+    </Component>
+    <Component class="javax.swing.JTextField" name="jtfTtl">
+    </Component>
+    <Component class="javax.swing.JTextField" name="jtfProtocol">
+    </Component>
+    <Component class="javax.swing.JTextField" name="jtfSourceIp">
+    </Component>
+    <Component class="javax.swing.JTextField" name="jtfDestinationIp">
     </Component>
   </SubComponents>
 </Form>

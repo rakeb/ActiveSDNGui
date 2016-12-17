@@ -14,7 +14,7 @@ import javax.swing.AbstractListModel;
  * @author Mazharul
  */
 public class ListDataModel extends AbstractListModel<String>{
-    private List<ListData> data =new ArrayList<ListData>();
+    private List<ListData> data =new ArrayList<>();
     
     @Override
     public int getSize() {

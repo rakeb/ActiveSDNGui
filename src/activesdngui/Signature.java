@@ -24,7 +24,7 @@ public class Signature {
     private String name;
     private Integer id;
     private Boolean isValid = false;
-    private HashMap<String, Object> fields = new HashMap<String, Object>();
+    private HashMap<String, Object> fields = new HashMap<>();
 
     public Signature(String name, Integer id) {
         this.name = name;
