@@ -15,8 +15,11 @@ import javax.swing.BoxLayout;
 public class MainFrame extends javax.swing.JFrame {
 
     public static MainFrame mainFrame;
-    AllEvent allEvtPanel;
+    public static AllEvent allEvtPanel;
+    public static About about;
+    public static CourseOfAction courseOfAction;
     private HashMap<Integer, Event> events = new HashMap<>();
+
     public MainFrame() {
         initComponents();
         customInit();
@@ -24,12 +27,12 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void customInit() {
         allEvtPanel = new AllEvent();
-        CourseOfAction courseOfAction = new CourseOfAction();
+        about = new About();
+        courseOfAction = new CourseOfAction();
 //        jtpMainTabbedPan.addTab("Event", allEvtPanel);
 //        jtpMainTabbedPan.addTab("Course of Action", courseOfAction);
     }
-    
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -39,69 +42,95 @@ public class MainFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jtpMainTabbedPan = new javax.swing.JTabbedPane();
-        jpEventSpecificationHolder = new javax.swing.JPanel();
-        jpCourseOfActionsHolder = new javax.swing.JPanel();
+        jpPolicyHolder = new javax.swing.JPanel();
+        jmbMainMenu = new javax.swing.JMenuBar();
+        jmPolicy = new javax.swing.JMenu();
+        jmiEventSpecification = new javax.swing.JMenuItem();
+        jSeparator1 = new javax.swing.JPopupMenu.Separator();
+        jmiCourseOfActions = new javax.swing.JMenuItem();
+        jmAbout = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jtpMainTabbedPan.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jtpMainTabbedPanMouseClicked(evt);
+        javax.swing.GroupLayout jpPolicyHolderLayout = new javax.swing.GroupLayout(jpPolicyHolder);
+        jpPolicyHolder.setLayout(jpPolicyHolderLayout);
+        jpPolicyHolderLayout.setHorizontalGroup(
+            jpPolicyHolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1182, Short.MAX_VALUE)
+        );
+        jpPolicyHolderLayout.setVerticalGroup(
+            jpPolicyHolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 605, Short.MAX_VALUE)
+        );
+
+        jmPolicy.setText("Policy");
+
+        jmiEventSpecification.setText("Event Specification");
+        jmiEventSpecification.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiEventSpecificationActionPerformed(evt);
             }
         });
+        jmPolicy.add(jmiEventSpecification);
+        jmPolicy.add(jSeparator1);
 
-        javax.swing.GroupLayout jpEventSpecificationHolderLayout = new javax.swing.GroupLayout(jpEventSpecificationHolder);
-        jpEventSpecificationHolder.setLayout(jpEventSpecificationHolderLayout);
-        jpEventSpecificationHolderLayout.setHorizontalGroup(
-            jpEventSpecificationHolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1155, Short.MAX_VALUE)
-        );
-        jpEventSpecificationHolderLayout.setVerticalGroup(
-            jpEventSpecificationHolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 575, Short.MAX_VALUE)
-        );
+        jmiCourseOfActions.setText("Course of Actions");
+        jmiCourseOfActions.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiCourseOfActionsActionPerformed(evt);
+            }
+        });
+        jmPolicy.add(jmiCourseOfActions);
 
-        jtpMainTabbedPan.addTab("Event Specification", jpEventSpecificationHolder);
+        jmbMainMenu.add(jmPolicy);
 
-        javax.swing.GroupLayout jpCourseOfActionsHolderLayout = new javax.swing.GroupLayout(jpCourseOfActionsHolder);
-        jpCourseOfActionsHolder.setLayout(jpCourseOfActionsHolderLayout);
-        jpCourseOfActionsHolderLayout.setHorizontalGroup(
-            jpCourseOfActionsHolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1155, Short.MAX_VALUE)
-        );
-        jpCourseOfActionsHolderLayout.setVerticalGroup(
-            jpCourseOfActionsHolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 575, Short.MAX_VALUE)
-        );
+        jmAbout.setText("About");
+        jmAbout.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jmAboutMouseClicked(evt);
+            }
+        });
+        jmbMainMenu.add(jmAbout);
 
-        jtpMainTabbedPan.addTab("Course of Actions", jpCourseOfActionsHolder);
+        setJMenuBar(jmbMainMenu);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jtpMainTabbedPan))
+            .addComponent(jpPolicyHolder, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jtpMainTabbedPan))
+            .addComponent(jpPolicyHolder, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jtpMainTabbedPanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtpMainTabbedPanMouseClicked
-        jpEventSpecificationHolder.removeAll();
-        jpEventSpecificationHolder.setLayout(new BoxLayout(jpEventSpecificationHolder, BoxLayout.X_AXIS));
-        jpEventSpecificationHolder.add(allEvtPanel);
-        jpEventSpecificationHolder.revalidate();
-        jpEventSpecificationHolder.repaint();
-    }//GEN-LAST:event_jtpMainTabbedPanMouseClicked
+    private void jmiEventSpecificationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiEventSpecificationActionPerformed
+        jpPolicyHolder.removeAll();
+        jpPolicyHolder.setLayout(new BoxLayout(jpPolicyHolder, BoxLayout.X_AXIS));
+        jpPolicyHolder.add(allEvtPanel);
+        jpPolicyHolder.revalidate();
+        jpPolicyHolder.repaint();
+    }//GEN-LAST:event_jmiEventSpecificationActionPerformed
+
+    private void jmAboutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jmAboutMouseClicked
+        jpPolicyHolder.removeAll();
+        jpPolicyHolder.setLayout(new BoxLayout(jpPolicyHolder, BoxLayout.X_AXIS));
+        jpPolicyHolder.add(about);
+        jpPolicyHolder.revalidate();
+        jpPolicyHolder.repaint();
+    }//GEN-LAST:event_jmAboutMouseClicked
+
+    private void jmiCourseOfActionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiCourseOfActionsActionPerformed
+        jpPolicyHolder.removeAll();
+        jpPolicyHolder.setLayout(new BoxLayout(jpPolicyHolder, BoxLayout.X_AXIS));
+        jpPolicyHolder.add(courseOfAction);
+        jpPolicyHolder.revalidate();
+        jpPolicyHolder.repaint();
+    }//GEN-LAST:event_jmiCourseOfActionsActionPerformed
 
     /**
      * @param args the command line arguments
@@ -123,7 +152,7 @@ public class MainFrame extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        
+
         //</editor-fold>
 
         /* Create and display the form */
@@ -134,8 +163,12 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel jpCourseOfActionsHolder;
-    private javax.swing.JPanel jpEventSpecificationHolder;
-    private javax.swing.JTabbedPane jtpMainTabbedPan;
+    private javax.swing.JPopupMenu.Separator jSeparator1;
+    private javax.swing.JMenu jmAbout;
+    private javax.swing.JMenu jmPolicy;
+    private javax.swing.JMenuBar jmbMainMenu;
+    private javax.swing.JMenuItem jmiCourseOfActions;
+    private javax.swing.JMenuItem jmiEventSpecification;
+    private javax.swing.JPanel jpPolicyHolder;
     // End of variables declaration//GEN-END:variables
 }
