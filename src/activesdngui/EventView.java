@@ -28,15 +28,15 @@ public class EventView extends javax.swing.JPanel {
     IcmpView icmpView = new IcmpView();
     
     
-    private MainFrame mainFrame;
+    private AllEvent allEventPanel;
         
     public EventView() {
         initComponents();
         customInit();
     }
 
-    public EventView(MainFrame mainFrame){
-        this.mainFrame = mainFrame;
+    public EventView(AllEvent mainFrame){
+        this.allEventPanel = mainFrame;
         initComponents();
         customInit();
     }
@@ -224,14 +224,14 @@ public class EventView extends javax.swing.JPanel {
             }
         }
         
-        mainFrame.eventUpdated(event);
+        allEventPanel.eventUpdated(event);
         
     }//GEN-LAST:event_jbtSaveActionPerformed
 
     private void jbtDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtDeleteActionPerformed
         if (event != null) {
             event.setIsDeleted(Boolean.TRUE);
-            mainFrame.eventUpdated(event);
+            allEventPanel.eventUpdated(event);
         }
         else {
             JOptionPane.showMessageDialog(this, "Cannot delete. Event not saved yet");
