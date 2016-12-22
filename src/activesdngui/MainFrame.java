@@ -5,14 +5,8 @@
  */
 package activesdngui;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
-import java.util.List;
 import javax.swing.BoxLayout;
-import javax.swing.JList;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 
 /**
  *
@@ -21,6 +15,7 @@ import javax.swing.event.ListSelectionListener;
 public class MainFrame extends javax.swing.JFrame {
 
     public static MainFrame mainFrame;
+    AllEvent allEvtPanel;
     private HashMap<Integer, Event> events = new HashMap<>();
     public MainFrame() {
         initComponents();
@@ -28,8 +23,10 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     private void customInit() {
-        AllEvent allEvtPanel = new AllEvent();
-        jtpMainTabbedPan.addTab("Event", allEvtPanel);
+        allEvtPanel = new AllEvent();
+        CourseOfAction courseOfAction = new CourseOfAction();
+//        jtpMainTabbedPan.addTab("Event", allEvtPanel);
+//        jtpMainTabbedPan.addTab("Course of Action", courseOfAction);
     }
     
     
@@ -43,8 +40,42 @@ public class MainFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         jtpMainTabbedPan = new javax.swing.JTabbedPane();
+        jpEventSpecificationHolder = new javax.swing.JPanel();
+        jpCourseOfActionsHolder = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jtpMainTabbedPan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jtpMainTabbedPanMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jpEventSpecificationHolderLayout = new javax.swing.GroupLayout(jpEventSpecificationHolder);
+        jpEventSpecificationHolder.setLayout(jpEventSpecificationHolderLayout);
+        jpEventSpecificationHolderLayout.setHorizontalGroup(
+            jpEventSpecificationHolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1155, Short.MAX_VALUE)
+        );
+        jpEventSpecificationHolderLayout.setVerticalGroup(
+            jpEventSpecificationHolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 575, Short.MAX_VALUE)
+        );
+
+        jtpMainTabbedPan.addTab("Event Specification", jpEventSpecificationHolder);
+
+        javax.swing.GroupLayout jpCourseOfActionsHolderLayout = new javax.swing.GroupLayout(jpCourseOfActionsHolder);
+        jpCourseOfActionsHolder.setLayout(jpCourseOfActionsHolderLayout);
+        jpCourseOfActionsHolderLayout.setHorizontalGroup(
+            jpCourseOfActionsHolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1155, Short.MAX_VALUE)
+        );
+        jpCourseOfActionsHolderLayout.setVerticalGroup(
+            jpCourseOfActionsHolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 575, Short.MAX_VALUE)
+        );
+
+        jtpMainTabbedPan.addTab("Course of Actions", jpCourseOfActionsHolder);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -52,17 +83,25 @@ public class MainFrame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jtpMainTabbedPan, javax.swing.GroupLayout.DEFAULT_SIZE, 1176, Short.MAX_VALUE))
+                .addComponent(jtpMainTabbedPan))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jtpMainTabbedPan, javax.swing.GroupLayout.DEFAULT_SIZE, 621, Short.MAX_VALUE))
+                .addComponent(jtpMainTabbedPan))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jtpMainTabbedPanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtpMainTabbedPanMouseClicked
+        jpEventSpecificationHolder.removeAll();
+        jpEventSpecificationHolder.setLayout(new BoxLayout(jpEventSpecificationHolder, BoxLayout.X_AXIS));
+        jpEventSpecificationHolder.add(allEvtPanel);
+        jpEventSpecificationHolder.revalidate();
+        jpEventSpecificationHolder.repaint();
+    }//GEN-LAST:event_jtpMainTabbedPanMouseClicked
 
     /**
      * @param args the command line arguments
@@ -95,6 +134,8 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel jpCourseOfActionsHolder;
+    private javax.swing.JPanel jpEventSpecificationHolder;
     private javax.swing.JTabbedPane jtpMainTabbedPan;
     // End of variables declaration//GEN-END:variables
 }
