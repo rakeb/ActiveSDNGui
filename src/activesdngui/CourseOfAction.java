@@ -6,6 +6,7 @@
 package activesdngui;
 
 import java.util.HashMap;
+import javax.swing.DefaultComboBoxModel;
 
 /**
  *
@@ -23,11 +24,13 @@ public class CourseOfAction extends javax.swing.JPanel {
     }
     
     private void customInit() {
-        String[] petStrings = {"Bird", "Cat", "Dog", "Rabbit", "Pig"};
+        String[] openFlowActions = {"Drop", "Notify", "Drop and Notify", "Migrate"};
 
         //Create the combo box, select item at index 4.
         //Indices start at 0, so 4 specifies the pig.
-        jcbOpenFlowActions.addItem(TOOL_TIP_TEXT_KEY);
+        for (String openFlowAction : openFlowActions) {
+            jcbOpenFlowActions.addItem(openFlowAction);
+        }
         jcbOpenFlowActions.setSelectedIndex(0);
     }
 
@@ -46,13 +49,19 @@ public class CourseOfAction extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jcbOpenFlowActions = new javax.swing.JComboBox<>();
+        jLabel3 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jpInvestigationAction = new javax.swing.JPanel();
 
         jpConfigAction.setBackground(new java.awt.Color(255, 255, 255));
 
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         jLabel1.setText("Primitive Action");
+
+        jcbOpenFlowActions.setModel(new CustomActions());
+
+        jLabel3.setText("OpenFlow Action Lists");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -64,8 +73,10 @@ public class CourseOfAction extends javax.swing.JPanel {
                         .addGap(209, 209, 209)
                         .addComponent(jLabel1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addComponent(jcbOpenFlowActions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jcbOpenFlowActions, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(284, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -73,11 +84,14 @@ public class CourseOfAction extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(29, 29, 29)
-                .addComponent(jcbOpenFlowActions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(445, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jcbOpenFlowActions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addContainerGap(456, Short.MAX_VALUE))
         );
 
+        jLabel2.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         jLabel2.setText("Composite Action");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -126,7 +140,7 @@ public class CourseOfAction extends javax.swing.JPanel {
         jpInvestigationAction.setLayout(jpInvestigationActionLayout);
         jpInvestigationActionLayout.setHorizontalGroup(
             jpInvestigationActionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1187, Short.MAX_VALUE)
+            .addGap(0, 1199, Short.MAX_VALUE)
         );
         jpInvestigationActionLayout.setVerticalGroup(
             jpInvestigationActionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -152,7 +166,7 @@ public class CourseOfAction extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1214, Short.MAX_VALUE)
+            .addGap(0, 1226, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -174,6 +188,7 @@ public class CourseOfAction extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JComboBox<String> jcbOpenFlowActions;
@@ -182,4 +197,17 @@ public class CourseOfAction extends javax.swing.JPanel {
     private javax.swing.JPanel jpInvestigationAction;
     private javax.swing.JTabbedPane jtpMainActionTabbedPan;
     // End of variables declaration//GEN-END:variables
+    
+    class CustomActions extends DefaultComboBoxModel{
+
+        String [] items; 
+        public CustomActions() {
+            items = new String[] { "Item 1", "Item 2", "Item 3", "Item 4" };
+            DefaultComboBoxModel defaultComboBoxModel = new DefaultComboBoxModel(items);
+        }
+        
+//    jComboBox1 = new javax.swing.JComboBox<>();
+//    jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+      
+    }
 }

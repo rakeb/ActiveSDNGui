@@ -5,6 +5,7 @@
  */
 package activesdngui;
 
+import activesdngui.views.About;
 import java.util.HashMap;
 import javax.swing.BoxLayout;
 
@@ -43,6 +44,7 @@ public class MainFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         jpPolicyHolder = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
         jmbMainMenu = new javax.swing.JMenuBar();
         jmPolicy = new javax.swing.JMenu();
         jmiEventSpecification = new javax.swing.JMenuItem();
@@ -52,15 +54,24 @@ public class MainFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
+        jLabel1.setText("Welcome to ActiveSDN Policy Creation");
+
         javax.swing.GroupLayout jpPolicyHolderLayout = new javax.swing.GroupLayout(jpPolicyHolder);
         jpPolicyHolder.setLayout(jpPolicyHolderLayout);
         jpPolicyHolderLayout.setHorizontalGroup(
             jpPolicyHolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1182, Short.MAX_VALUE)
+            .addGroup(jpPolicyHolderLayout.createSequentialGroup()
+                .addGap(261, 261, 261)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 723, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(198, Short.MAX_VALUE))
         );
         jpPolicyHolderLayout.setVerticalGroup(
             jpPolicyHolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 605, Short.MAX_VALUE)
+            .addGroup(jpPolicyHolderLayout.createSequentialGroup()
+                .addGap(126, 126, 126)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(202, Short.MAX_VALUE))
         );
 
         jmPolicy.setText("Policy");
@@ -163,6 +174,7 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JMenu jmAbout;
     private javax.swing.JMenu jmPolicy;
