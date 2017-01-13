@@ -87,10 +87,10 @@ public class IpView extends  GenericSignaturePanel{
                     .addComponent(jtfSourceIp)
                     .addComponent(jtfDestinationIp, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
                     .addComponent(jtfTos))
-                .addContainerGap(236, Short.MAX_VALUE))
+                .addGap(236, 236, 236))
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jckAddSignature)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 0, 0))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -116,7 +116,7 @@ public class IpView extends  GenericSignaturePanel{
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel5)
                     .addComponent(jtfDestinationIp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(176, Short.MAX_VALUE))
+                .addGap(176, 176, 176))
         );
     }// </editor-fold>//GEN-END:initComponents
 

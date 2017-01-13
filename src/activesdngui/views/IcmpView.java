@@ -70,7 +70,7 @@ public class IcmpView extends GenericSignaturePanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jckAddSignature)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 0, 0))
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -86,7 +86,7 @@ public class IcmpView extends GenericSignaturePanel {
                     .addComponent(jtfTtl, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jtfTos, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jtfDestinationIp))
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addGap(235, 235, 235))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -112,7 +112,7 @@ public class IcmpView extends GenericSignaturePanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(jtfDestinationIp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addGap(31, 31, 31))
         );
     }// </editor-fold>//GEN-END:initComponents
 

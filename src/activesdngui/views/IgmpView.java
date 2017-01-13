@@ -85,7 +85,7 @@ public class IgmpView extends GenericSignaturePanel {
                             .addComponent(jtfSourceIp)
                             .addComponent(jtfDestinationIp, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
                             .addComponent(jtfTos))))
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addGap(237, 237, 237))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -111,7 +111,7 @@ public class IgmpView extends GenericSignaturePanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(jtfDestinationIp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addGap(176, 176, 176))
         );
     }// </editor-fold>//GEN-END:initComponents
 

@@ -70,10 +70,10 @@ public class TcpView extends GenericSignaturePanel {
                     .addComponent(jtfSourcePort, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
                     .addComponent(jtfDestinationPort, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jtfSequenceNumber))
-                .addGap(0, 212, Short.MAX_VALUE))
+                .addGap(212, 212, 212))
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jckAddSignature)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -91,7 +91,7 @@ public class TcpView extends GenericSignaturePanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jtfSequenceNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(240, Short.MAX_VALUE))
+                .addGap(240, 240, 240))
         );
     }// </editor-fold>//GEN-END:initComponents
 

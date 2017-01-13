@@ -73,7 +73,7 @@ public class ArpView extends GenericSignaturePanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jckAddSignature)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 0, 0))
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -89,7 +89,7 @@ public class ArpView extends GenericSignaturePanel {
                     .addComponent(jtfSourceMac, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jtfDestinationIp)
                     .addComponent(jtfProtocol, javax.swing.GroupLayout.Alignment.LEADING))
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addGap(237, 237, 237))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -115,7 +115,7 @@ public class ArpView extends GenericSignaturePanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(jtfDestinationIp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 29, Short.MAX_VALUE))
+                .addGap(176, 176, 176))
         );
     }// </editor-fold>//GEN-END:initComponents
 

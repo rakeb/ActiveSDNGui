@@ -10,8 +10,6 @@ import activesdngui.model.GenericSignaturePanel;
 import activesdngui.model.ListData;
 import activesdngui.model.ListDataModel;
 import activesdngui.model.Signature;
-import activesdngui.views.ArpView;
-import activesdngui.views.AllEvent;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.BoxLayout;
