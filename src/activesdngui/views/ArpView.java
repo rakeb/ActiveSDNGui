@@ -39,7 +39,6 @@ public class ArpView extends GenericSignaturePanel {
     private void initComponents() {
 
         jCheckBox1 = new javax.swing.JCheckBox();
-        jckAddSignature = new javax.swing.JCheckBox();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -53,9 +52,7 @@ public class ArpView extends GenericSignaturePanel {
 
         jCheckBox1.setText("jCheckBox1");
 
-        setPreferredSize(new java.awt.Dimension(320, 220));
-
-        jckAddSignature.setText("Add Signature");
+        setPreferredSize(new java.awt.Dimension(520, 365));
 
         jLabel1.setText("Protocol");
 
@@ -72,36 +69,29 @@ public class ArpView extends GenericSignaturePanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jckAddSignature)
-                        .addGap(0, 0, 0))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jtfDestinationMac, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
-                            .addComponent(jtfSourceIp, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jtfSourceMac, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jtfDestinationIp)
-                            .addComponent(jtfProtocol, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 237, Short.MAX_VALUE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jtfDestinationMac, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
+                    .addComponent(jtfSourceIp, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jtfSourceMac, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jtfDestinationIp)
+                    .addComponent(jtfProtocol, javax.swing.GroupLayout.Alignment.LEADING))
+                .addContainerGap(190, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jckAddSignature)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jtfProtocol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtfProtocol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -118,7 +108,7 @@ public class ArpView extends GenericSignaturePanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(jtfDestinationIp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(176, Short.MAX_VALUE))
+                .addContainerGap(163, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -130,7 +120,6 @@ public class ArpView extends GenericSignaturePanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JCheckBox jckAddSignature;
     private javax.swing.JTextField jtfDestinationIp;
     private javax.swing.JTextField jtfDestinationMac;
     private javax.swing.JTextField jtfProtocol;
@@ -141,7 +130,6 @@ public class ArpView extends GenericSignaturePanel {
     @Override
     public Signature parseData() {
         Signature signature = new Signature(sigName, Signature.ARP_ID);
-        signature.setIsValid(jckAddSignature.isSelected());
         
         HashMap<String, Object> fields = signature.getFields();
         fields.put(PROTOCOL, jtfProtocol.getText());
@@ -156,15 +144,12 @@ public class ArpView extends GenericSignaturePanel {
     @Override
     public void loadData(Signature signature) {
         if (signature != null) {
-            jckAddSignature.setSelected(signature.getIsValid());
-            if (signature.getIsValid()) {
-                HashMap<String, Object> fields = signature.getFields();
-                jtfProtocol.setText((String) fields.get(PROTOCOL));
-                jtfSourceMac.setText((String) fields.get(SOURCE_MAC));
-                jtfSourceIp.setText((String) fields.get(SOURCE_IP));
-                jtfDestinationMac.setText((String) fields.get(DESTINATION_MAC));
-                jtfDestinationIp.setText((String) fields.get(DESTINATION_IP));
-            }
+            HashMap<String, Object> fields = signature.getFields();
+            jtfProtocol.setText((String) fields.get(PROTOCOL));
+            jtfSourceMac.setText((String) fields.get(SOURCE_MAC));
+            jtfSourceIp.setText((String) fields.get(SOURCE_IP));
+            jtfDestinationMac.setText((String) fields.get(DESTINATION_MAC));
+            jtfDestinationIp.setText((String) fields.get(DESTINATION_IP));
         }
     }
 

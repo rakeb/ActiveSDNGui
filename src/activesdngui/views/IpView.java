@@ -36,7 +36,6 @@ public class IpView extends  GenericSignaturePanel{
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jckAddSignature = new javax.swing.JCheckBox();
         jLabel1 = new javax.swing.JLabel();
         jtfTos = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -48,9 +47,7 @@ public class IpView extends  GenericSignaturePanel{
         jtfSourceIp = new javax.swing.JTextField();
         jtfDestinationIp = new javax.swing.JTextField();
 
-        setPreferredSize(new java.awt.Dimension(420, 230));
-
-        jckAddSignature.setText("Add Signature");
+        setPreferredSize(new java.awt.Dimension(520, 365));
 
         jLabel1.setText("TOS");
 
@@ -88,15 +85,11 @@ public class IpView extends  GenericSignaturePanel{
                     .addComponent(jtfDestinationIp, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
                     .addComponent(jtfTos))
                 .addGap(236, 236, 236))
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jckAddSignature)
-                .addGap(0, 0, 0))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jckAddSignature)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jtfTos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -127,7 +120,6 @@ public class IpView extends  GenericSignaturePanel{
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JCheckBox jckAddSignature;
     private javax.swing.JTextField jtfDestinationIp;
     private javax.swing.JTextField jtfProtocol;
     private javax.swing.JTextField jtfSourceIp;
@@ -138,8 +130,6 @@ public class IpView extends  GenericSignaturePanel{
     @Override
     public Signature parseData() {
         Signature signature = new Signature(sigName, Signature.IP_ID);
-        
-        signature.setIsValid(jckAddSignature.isSelected());
         
         HashMap<String, Object> fields = signature.getFields();
         fields.put(TOS, jtfTos.getText());
@@ -154,15 +144,12 @@ public class IpView extends  GenericSignaturePanel{
     @Override
     public void loadData(Signature signature) {
         if (signature != null) {
-            jckAddSignature.setSelected(signature.getIsValid());
-            if (signature.getIsValid()) {
-                HashMap<String, Object> fields = signature.getFields();
-                jtfTos.setText((String) fields.get(TOS));
-                jtfTtl.setText((String) fields.get(TTL));
-                jtfProtocol.setText((String) fields.get(PROTOCOL));
-                jtfSourceIp.setText((String) fields.get(SOURCE_IP));
-                jtfDestinationIp.setText((String) fields.get(DESTINATION_IP));
-            }
+            HashMap<String, Object> fields = signature.getFields();
+            jtfTos.setText((String) fields.get(TOS));
+            jtfTtl.setText((String) fields.get(TTL));
+            jtfProtocol.setText((String) fields.get(PROTOCOL));
+            jtfSourceIp.setText((String) fields.get(SOURCE_IP));
+            jtfDestinationIp.setText((String) fields.get(DESTINATION_IP));
         }
     }
 

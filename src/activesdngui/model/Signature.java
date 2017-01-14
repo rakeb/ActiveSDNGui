@@ -23,7 +23,6 @@ public class Signature {
     
     private String name;
     private Integer id;
-    private Boolean isValid = false;
     private HashMap<String, Object> fields = new HashMap<>();
 
     public Signature(String name, Integer id) {
@@ -54,14 +53,4 @@ public class Signature {
     public void setFields(HashMap<String, Object> fields) {
         this.fields = fields;
     }
-
-    public Boolean getIsValid() {
-        return isValid;
-    }
-
-    public void setIsValid(Boolean isValid) {
-        this.isValid = isValid;
-    }
-    
-    
 }

@@ -37,7 +37,6 @@ public class TcpView extends GenericSignaturePanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jckAddSignature = new javax.swing.JCheckBox();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -45,9 +44,7 @@ public class TcpView extends GenericSignaturePanel {
         jtfDestinationPort = new javax.swing.JTextField();
         jtfSequenceNumber = new javax.swing.JTextField();
 
-        setPreferredSize(new java.awt.Dimension(420, 200));
-
-        jckAddSignature.setText("Add signature");
+        setPreferredSize(new java.awt.Dimension(520, 365));
 
         jLabel1.setText("Source Port");
 
@@ -60,38 +57,34 @@ public class TcpView extends GenericSignaturePanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jtfSourcePort, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
-                            .addComponent(jtfDestinationPort, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jtfSequenceNumber)))
-                    .addComponent(jckAddSignature))
-                .addContainerGap(212, Short.MAX_VALUE))
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3))
+                .addGap(50, 50, 50)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jtfSequenceNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtfDestinationPort, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtfSourcePort, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(161, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jckAddSignature)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jtfSourcePort, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jtfDestinationPort, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jtfDestinationPort, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jtfSequenceNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(240, Short.MAX_VALUE))
+                    .addComponent(jtfSequenceNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addContainerGap(243, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -100,7 +93,6 @@ public class TcpView extends GenericSignaturePanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JCheckBox jckAddSignature;
     private javax.swing.JTextField jtfDestinationPort;
     private javax.swing.JTextField jtfSequenceNumber;
     private javax.swing.JTextField jtfSourcePort;
@@ -109,7 +101,6 @@ public class TcpView extends GenericSignaturePanel {
     @Override
     public Signature parseData() {
         Signature signature = new Signature(sigName, Signature.TCP_ID);
-        signature.setIsValid(jckAddSignature.isSelected());
 
         HashMap<String, Object> fields = signature.getFields();
         fields.put(SOURCE_PORT, jtfSourcePort.getText());
@@ -122,13 +113,10 @@ public class TcpView extends GenericSignaturePanel {
     @Override
     public void loadData(Signature signature) {
         if (signature != null) {
-            jckAddSignature.setSelected(signature.getIsValid());
-            if (signature.getIsValid()) {
-                HashMap<String, Object> fields = signature.getFields();
-                jtfSourcePort.setText((String) fields.get(SOURCE_PORT));
-                jtfDestinationPort.setText((String) fields.get(DESTINATION_PORT));
-                jtfSequenceNumber.setText((String) fields.get(SEQUENCE_NUMBER));
-            }
+            HashMap<String, Object> fields = signature.getFields();
+            jtfSourcePort.setText((String) fields.get(SOURCE_PORT));
+            jtfDestinationPort.setText((String) fields.get(DESTINATION_PORT));
+            jtfSequenceNumber.setText((String) fields.get(SEQUENCE_NUMBER));
         }
     }
 

@@ -178,13 +178,13 @@ public class AllEvent extends javax.swing.JPanel {
             }
         });
 
-        jpEventViewHolder.setBackground(new java.awt.Color(204, 204, 204));
+        jpEventViewHolder.setPreferredSize(new java.awt.Dimension(715, 525));
 
         javax.swing.GroupLayout jpEventViewHolderLayout = new javax.swing.GroupLayout(jpEventViewHolder);
         jpEventViewHolder.setLayout(jpEventViewHolderLayout);
         jpEventViewHolderLayout.setHorizontalGroup(
             jpEventViewHolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 713, Short.MAX_VALUE)
+            .addGap(0, 715, Short.MAX_VALUE)
         );
         jpEventViewHolderLayout.setVerticalGroup(
             jpEventViewHolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -211,7 +211,7 @@ public class AllEvent extends javax.swing.JPanel {
         jpPattern.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel2.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
-        jLabel2.setText("Define Pattern");
+        jLabel2.setText("Pattern");
 
         jLabel3.setText("Window");
 
@@ -221,28 +221,25 @@ public class AllEvent extends javax.swing.JPanel {
         jpPattern.setLayout(jpPatternLayout);
         jpPatternLayout.setHorizontalGroup(
             jpPatternLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpPatternLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpPatternLayout.createSequentialGroup()
+                .addGap(14, 14, 14)
                 .addGroup(jpPatternLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpPatternLayout.createSequentialGroup()
-                        .addContainerGap(95, Short.MAX_VALUE)
-                        .addComponent(jLabel2))
-                    .addGroup(jpPatternLayout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addGroup(jpPatternLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jpPatternLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jtfWindow)
-                            .addComponent(jtfCount, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE))))
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 16, Short.MAX_VALUE)
+                .addGroup(jpPatternLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addGroup(jpPatternLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jtfWindow)
+                        .addComponent(jtfCount, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)))
                 .addGap(31, 31, 31))
         );
         jpPatternLayout.setVerticalGroup(
             jpPatternLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpPatternLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(13, 13, 13)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(19, 19, 19)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jpPatternLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jtfWindow, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -284,7 +281,7 @@ public class AllEvent extends javax.swing.JPanel {
                         .addContainerGap())
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jbCreateEvent)
-                        .addGap(237, 1040, Short.MAX_VALUE))))
+                        .addGap(237, 1042, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -312,7 +309,7 @@ public class AllEvent extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1155, Short.MAX_VALUE)
+            .addGap(0, 1157, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)

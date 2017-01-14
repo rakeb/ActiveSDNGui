@@ -39,7 +39,6 @@ public class IgmpView extends GenericSignaturePanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jckAddSignature = new javax.swing.JCheckBox();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -50,8 +49,6 @@ public class IgmpView extends GenericSignaturePanel {
         jtfProtocol = new javax.swing.JTextField();
         jtfSourceIp = new javax.swing.JTextField();
         jtfDestinationIp = new javax.swing.JTextField();
-
-        jckAddSignature.setText("Add Signature");
 
         jLabel1.setText("TOS");
 
@@ -68,30 +65,26 @@ public class IgmpView extends GenericSignaturePanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jckAddSignature)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jtfTtl)
-                            .addComponent(jtfProtocol)
-                            .addComponent(jtfSourceIp)
-                            .addComponent(jtfDestinationIp, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
-                            .addComponent(jtfTos))))
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jtfTtl)
+                    .addComponent(jtfProtocol)
+                    .addComponent(jtfSourceIp)
+                    .addComponent(jtfDestinationIp, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
+                    .addComponent(jtfTos))
                 .addGap(237, 237, 237))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jckAddSignature)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jtfTos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -122,7 +115,6 @@ public class IgmpView extends GenericSignaturePanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JCheckBox jckAddSignature;
     private javax.swing.JTextField jtfDestinationIp;
     private javax.swing.JTextField jtfProtocol;
     private javax.swing.JTextField jtfSourceIp;
@@ -133,9 +125,7 @@ public class IgmpView extends GenericSignaturePanel {
     @Override
     public Signature parseData() {
         Signature signature = new Signature(sigName, Signature.IGMP_ID);
-        
-        signature.setIsValid(jckAddSignature.isSelected());
-        
+
         HashMap<String, Object> fields = signature.getFields();
         fields.put(TOS, jtfTos.getText());
         fields.put(TTL, jtfTtl.getText());
@@ -149,15 +139,12 @@ public class IgmpView extends GenericSignaturePanel {
     @Override
     public void loadData(Signature signature) {
         if (signature != null) {
-            jckAddSignature.setSelected(signature.getIsValid());
-            if (signature.getIsValid()) {
-                HashMap<String, Object> fields = signature.getFields();
-                jtfTos.setText((String) fields.get(TOS));
-                jtfTtl.setText((String) fields.get(TTL));
-                jtfProtocol.setText((String) fields.get(PROTOCOL));
-                jtfSourceIp.setText((String) fields.get(SOURCE_IP));
-                jtfDestinationIp.setText((String) fields.get(DESTINATION_IP));
-            }
+            HashMap<String, Object> fields = signature.getFields();
+            jtfTos.setText((String) fields.get(TOS));
+            jtfTtl.setText((String) fields.get(TTL));
+            jtfProtocol.setText((String) fields.get(PROTOCOL));
+            jtfSourceIp.setText((String) fields.get(SOURCE_IP));
+            jtfDestinationIp.setText((String) fields.get(DESTINATION_IP));
         }
     }
 
