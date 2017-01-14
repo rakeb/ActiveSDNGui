@@ -33,7 +33,11 @@ public class MainFrame extends javax.swing.JFrame {
         allEvtPanel = new AllEvent();
         about = new About();
         courseOfAction = new CourseOfAction(controller);
-//        jtpMainTabbedPan.addTab("Event", allEvtPanel);
+        jtpMainTabbedPan.addTab("Event", allEvtPanel);
+        jtpMainTabbedPan.addTab("Action", courseOfAction);
+        jtpMainTabbedPan.addTab("Policy Bulider", null);
+        jtpMainTabbedPan.addTab("About", about);
+//        jtpMainTabbedPan.addTab("Course of Action", courseOfAction);
 //        jtpMainTabbedPan.addTab("Course of Action", courseOfAction);
         
         //sent controller to everyone
@@ -50,64 +54,23 @@ public class MainFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         jpPolicyHolder = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        jtpMainTabbedPan = new javax.swing.JTabbedPane();
         jmbMainMenu = new javax.swing.JMenuBar();
-        jmPolicy = new javax.swing.JMenu();
-        jmiEventSpecification = new javax.swing.JMenuItem();
-        jSeparator1 = new javax.swing.JPopupMenu.Separator();
-        jmiCourseOfActions = new javax.swing.JMenuItem();
-        jmAbout = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
-        jLabel1.setText("Welcome to ActiveSDN Policy Creation");
 
         javax.swing.GroupLayout jpPolicyHolderLayout = new javax.swing.GroupLayout(jpPolicyHolder);
         jpPolicyHolder.setLayout(jpPolicyHolderLayout);
         jpPolicyHolderLayout.setHorizontalGroup(
             jpPolicyHolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpPolicyHolderLayout.createSequentialGroup()
-                .addGap(384, 384, 384)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(198, Short.MAX_VALUE))
+            .addComponent(jtpMainTabbedPan, javax.swing.GroupLayout.DEFAULT_SIZE, 1202, Short.MAX_VALUE)
         );
         jpPolicyHolderLayout.setVerticalGroup(
             jpPolicyHolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpPolicyHolderLayout.createSequentialGroup()
-                .addGap(126, 126, 126)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(202, Short.MAX_VALUE))
+                .addComponent(jtpMainTabbedPan, javax.swing.GroupLayout.DEFAULT_SIZE, 582, Short.MAX_VALUE)
+                .addContainerGap())
         );
-
-        jmPolicy.setText("Policy");
-
-        jmiEventSpecification.setText("Event Specification");
-        jmiEventSpecification.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmiEventSpecificationActionPerformed(evt);
-            }
-        });
-        jmPolicy.add(jmiEventSpecification);
-        jmPolicy.add(jSeparator1);
-
-        jmiCourseOfActions.setText("Course of Actions");
-        jmiCourseOfActions.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmiCourseOfActionsActionPerformed(evt);
-            }
-        });
-        jmPolicy.add(jmiCourseOfActions);
-
-        jmbMainMenu.add(jmPolicy);
-
-        jmAbout.setText("About");
-        jmAbout.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jmAboutMouseClicked(evt);
-            }
-        });
-        jmbMainMenu.add(jmAbout);
 
         setJMenuBar(jmbMainMenu);
 
@@ -124,30 +87,6 @@ public class MainFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jmiEventSpecificationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiEventSpecificationActionPerformed
-        jpPolicyHolder.removeAll();
-        jpPolicyHolder.setLayout(new BoxLayout(jpPolicyHolder, BoxLayout.X_AXIS));
-        jpPolicyHolder.add(allEvtPanel);
-        jpPolicyHolder.revalidate();
-        jpPolicyHolder.repaint();
-    }//GEN-LAST:event_jmiEventSpecificationActionPerformed
-
-    private void jmAboutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jmAboutMouseClicked
-        jpPolicyHolder.removeAll();
-        jpPolicyHolder.setLayout(new BoxLayout(jpPolicyHolder, BoxLayout.X_AXIS));
-        jpPolicyHolder.add(about);
-        jpPolicyHolder.revalidate();
-        jpPolicyHolder.repaint();
-    }//GEN-LAST:event_jmAboutMouseClicked
-
-    private void jmiCourseOfActionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiCourseOfActionsActionPerformed
-        jpPolicyHolder.removeAll();
-        jpPolicyHolder.setLayout(new BoxLayout(jpPolicyHolder, BoxLayout.X_AXIS));
-        jpPolicyHolder.add(courseOfAction);
-        jpPolicyHolder.revalidate();
-        jpPolicyHolder.repaint();
-    }//GEN-LAST:event_jmiCourseOfActionsActionPerformed
 
     /**
      * @param args the command line arguments
@@ -180,13 +119,8 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JPopupMenu.Separator jSeparator1;
-    private javax.swing.JMenu jmAbout;
-    private javax.swing.JMenu jmPolicy;
     private javax.swing.JMenuBar jmbMainMenu;
-    private javax.swing.JMenuItem jmiCourseOfActions;
-    private javax.swing.JMenuItem jmiEventSpecification;
     private javax.swing.JPanel jpPolicyHolder;
+    private javax.swing.JTabbedPane jtpMainTabbedPan;
     // End of variables declaration//GEN-END:variables
 }

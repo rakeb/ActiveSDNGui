@@ -8,9 +8,11 @@ package activesdngui.utility;
 import activesdngui.controller.EventSpecificationController;
 import activesdngui.model.Action;
 import activesdngui.model.Event;
+import activesdngui.model.ListData;
 import activesdngui.model.Pattern;
 import activesdngui.model.Signature;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -20,6 +22,15 @@ import java.util.List;
  * @author mislam7
  */
 public class Utilities {
+    
+    public static boolean containsLocation(Collection<ListData> c, String location) {
+        for(ListData o : c) {
+            if(o != null && o.getName().equals(location)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
     public static void pirntArray(Object array[]) {
         for (int i = 0; i < array.length; i++) {

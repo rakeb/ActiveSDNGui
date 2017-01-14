@@ -12,6 +12,10 @@ package activesdngui.model;
 public class ListData {
     private String name;
     private Object data;
+
+    public ListData() {
+    }
+    
     
     public ListData(String name, Object data){
         this.name = name;
@@ -32,6 +36,12 @@ public class ListData {
 
     public void setData(Object data) {
         this.data = data;
+    }
+    
+    @Override
+    public String toString()
+    {
+        return name;
     }
     
 }

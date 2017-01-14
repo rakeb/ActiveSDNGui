@@ -16,7 +16,8 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import javax.swing.BoxLayout;
-import javax.swing.JList;
+import javax.swing.DefaultListModel;
+import javax.swing.ListModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -31,8 +32,19 @@ public class AllEvent extends javax.swing.JPanel {
 
     public AllEvent() {
         initComponents();
+        customInit();
     }
 
+    private void customInit() {
+        EventView eventView = new EventView(this);
+        jlEventList.setSelectedIndex(-1);
+        jpEventViewHolder.removeAll();
+        jpEventViewHolder.setLayout(new BoxLayout(jpEventViewHolder, BoxLayout.X_AXIS));
+        jpEventViewHolder.add(eventView);
+        jpEventViewHolder.revalidate();
+        jpEventViewHolder.repaint();
+    }
+    
     public void eventUpdated(Event event) {
         if (event.getIsDeleted()) {
             events.remove(event.getId());
@@ -50,18 +62,68 @@ public class AllEvent extends javax.swing.JPanel {
         }
 
         model.setData(eventList);
-        jlEventList = new JList<>(model);
+        updateEventList();
+        //jlEventList = new JList<>(model);
         jlEventList.addListSelectionListener(new CustomListSelectionListner());
-        jpListPanel.removeAll();
-        jpListPanel.setLayout(new BoxLayout(jpListPanel, BoxLayout.X_AXIS));
-        jpListPanel.add(jlEventList);
+        //jpListPanel.removeAll();
+        //jpListPanel.setLayout(new BoxLayout(jpListPanel, BoxLayout.X_AXIS));
+        //jpListPanel.add(jlEventList);
         if (event.getIsDeleted()) {
             jpEventViewHolder.removeAll();
             jpEventViewHolder.revalidate();
         }
         this.revalidate();
         this.repaint();
+        
+        customInit();
     }
+
+    private void updateEventList() {
+        
+//        ListModel<String> modelNames = jlEventList.getModel();
+//        ListModel<String> modelNames = jlEventList.getModel();
+        
+//        DefaultListModel nmodel = (DefaultListModel) jlEventList.getModel();
+//        List<ListData> listDatasToBeAdded = model.getData();
+//        List<ListData> currentListDatas = new ArrayList<>();
+//        for (int i = 0; i < nmodel.getSize(); i++) {
+//            currentListDatas.add((ListData) nmodel.getElementAt(i));
+//        }
+//        
+//        
+//        for (ListData listData : listDatasToBeAdded) {
+//            String name = listData.getName();
+//            System.out.println("listdata name: " + name);
+//            if (!Utilities.containsLocation(currentListDatas, name)) {
+//                nmodel.addElement(listData);
+//            }
+////            if (modelNames.getSize() == 0) {
+////                nmodel.addElement(listData);
+////            } else {
+////                for (int i = 0; i < modelNames.getSize(); i++) {
+////                    System.out.println("hello world  " + modelNames.getElementAt(i));
+////                    if (!modelNames.getElementAt(i).equals(name)) {
+////                        nmodel.addElement(listData);
+////                    } 
+////                }
+////            }
+//            
+//        }
+        
+        DefaultListModel nmodel = (DefaultListModel) jlEventList.getModel();
+        nmodel.removeAllElements();
+        List<ListData> listDatasToBeAdded = model.getData();
+        
+        for (ListData listData : listDatasToBeAdded) {
+            String name = listData.getName();
+            System.out.println("listdata name: " + name);
+            nmodel.addElement(listData);
+        }
+
+        
+        
+    }
+
 
     class CustomListSelectionListner implements ListSelectionListener {
 
@@ -109,7 +171,7 @@ public class AllEvent extends javax.swing.JPanel {
         jbCreateEventExpression = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
-        jbCreateEvent.setText("Create event");
+        jbCreateEvent.setText("New event");
         jbCreateEvent.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbCreateEventActionPerformed(evt);
@@ -122,38 +184,31 @@ public class AllEvent extends javax.swing.JPanel {
         jpEventViewHolder.setLayout(jpEventViewHolderLayout);
         jpEventViewHolderLayout.setHorizontalGroup(
             jpEventViewHolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 700, Short.MAX_VALUE)
+            .addGap(0, 713, Short.MAX_VALUE)
         );
         jpEventViewHolderLayout.setVerticalGroup(
             jpEventViewHolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 525, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jpListPanel.setBackground(new java.awt.Color(204, 204, 204));
+        jpListPanel.setBackground(new java.awt.Color(255, 255, 255));
 
         model = new ListDataModel();
-        jlEventList.setBackground(new java.awt.Color(204, 204, 204));
-        jlEventList.setModel(model);
+        jlEventList.setModel(new DefaultListModel());
         jScrollPane1.setViewportView(jlEventList);
 
         javax.swing.GroupLayout jpListPanelLayout = new javax.swing.GroupLayout(jpListPanel);
         jpListPanel.setLayout(jpListPanelLayout);
         jpListPanelLayout.setHorizontalGroup(
             jpListPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpListPanelLayout.createSequentialGroup()
-                .addContainerGap(27, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
         );
         jpListPanelLayout.setVerticalGroup(
             jpListPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpListPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(24, Short.MAX_VALUE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 420, Short.MAX_VALUE)
         );
 
-        jpPattern.setBackground(new java.awt.Color(204, 204, 204));
+        jpPattern.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel2.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         jLabel2.setText("Define Pattern");
@@ -169,7 +224,7 @@ public class AllEvent extends javax.swing.JPanel {
             .addGroup(jpPatternLayout.createSequentialGroup()
                 .addGroup(jpPatternLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpPatternLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap(95, Short.MAX_VALUE)
                         .addComponent(jLabel2))
                     .addGroup(jpPatternLayout.createSequentialGroup()
                         .addGap(14, 14, 14)
@@ -216,23 +271,20 @@ public class AllEvent extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jbCreateEvent)
-                        .addGap(237, 1021, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jpListPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jbCreateEventExpression)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(67, 67, 67)
-                                .addComponent(jLabel1))
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jbCreateEventExpression, javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addGap(8, 8, 8)
-                                    .addComponent(jpListPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGap(6, 6, 6)
+                                .addComponent(jLabel1)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jpEventViewHolder, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jpPattern, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())))
+                        .addContainerGap())
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jbCreateEvent)
+                        .addGap(237, 1040, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -241,23 +293,26 @@ public class AllEvent extends javax.swing.JPanel {
                 .addComponent(jbCreateEvent)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jpEventViewHolder, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jpListPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(35, 35, 35)
-                        .addComponent(jbCreateEventExpression))
-                    .addComponent(jpPattern, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                        .addComponent(jpEventViewHolder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jpPattern, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jpListPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                        .addComponent(jbCreateEventExpression)
+                        .addGap(26, 26, 26))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1149, Short.MAX_VALUE)
+            .addGap(0, 1155, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -266,7 +321,7 @@ public class AllEvent extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 569, Short.MAX_VALUE)
+            .addGap(0, 572, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -274,16 +329,6 @@ public class AllEvent extends javax.swing.JPanel {
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jbCreateEventActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCreateEventActionPerformed
-        EventView eventView = new EventView(this);
-        jlEventList.setSelectedIndex(-1);
-        jpEventViewHolder.removeAll();
-        jpEventViewHolder.setLayout(new BoxLayout(jpEventViewHolder, BoxLayout.X_AXIS));
-        jpEventViewHolder.add(eventView);
-        jpEventViewHolder.revalidate();
-        jpEventViewHolder.repaint();
-    }//GEN-LAST:event_jbCreateEventActionPerformed
 
     private void jbCreateEventExpressionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCreateEventExpressionActionPerformed
         //pattern
@@ -306,7 +351,19 @@ public class AllEvent extends javax.swing.JPanel {
         Utilities.printController(controller);
     }//GEN-LAST:event_jbCreateEventExpressionActionPerformed
 
+    private void jbCreateEventActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCreateEventActionPerformed
+        EventView eventView = new EventView(this);
+        jlEventList.setSelectedIndex(-1);
+        jpEventViewHolder.removeAll();
+        jpEventViewHolder.setLayout(new BoxLayout(jpEventViewHolder, BoxLayout.X_AXIS));
+        jpEventViewHolder.add(eventView);
+        jpEventViewHolder.revalidate();
+        jpEventViewHolder.repaint();
+    }//GEN-LAST:event_jbCreateEventActionPerformed
 
+
+
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

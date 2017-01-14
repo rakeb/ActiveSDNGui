@@ -5,14 +5,19 @@
  */
 package activesdngui.views;
 
+import activesdngui.model.Action;
 import activesdngui.model.Event;
 import activesdngui.model.GenericSignaturePanel;
 import activesdngui.model.ListData;
 import activesdngui.model.ListDataModel;
+//import activesdngui.model.ListDataModel;
 import activesdngui.model.Signature;
+import activesdngui.utility.Utilities;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import javax.swing.BoxLayout;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.event.DocumentEvent;
@@ -46,6 +51,32 @@ public class EventView extends javax.swing.JPanel {
         customInit();
     }
     
+    private void customInit(){
+        
+        handleButtons();
+        //populate signature model
+        List<ListData> datas = new ArrayList<>();
+        datas.add(new ListData("IGMP", igmpView));
+        datas.add(new ListData("TCP", tcpView));
+        datas.add(new ListData("IP", ipView));
+        datas.add(new ListData("ARP", arpView));
+        datas.add(new ListData("ICMP", icmpView));
+        model.setData(datas);
+        
+        for (ListData data : datas) {
+            jcbEventType.addItem(data.getName());
+        }
+        
+//        String[] openFlowActions = {"Drop", "Notify", "Drop and Notify", "Migrate"};
+//
+//        //Create the combo box, select item at index 4.
+//        //Indices start at 0, so 4 specifies the pig.
+//        for (String openFlowAction : openFlowActions) {
+//            jcbOpenFlowActions.addItem(openFlowAction);
+//        }
+//        jcbOpenFlowActions.setSelectedIndex(0);
+    }
+    
     public void loadData(Event e) {
         this.event = e;
         jtfEventName.setText(e.getName());
@@ -58,18 +89,7 @@ public class EventView extends javax.swing.JPanel {
         }
         
     }
-    private void customInit()
-    {
-        handleButtons();
-        //populate signature model
-        List<ListData> data = new ArrayList<>();
-        data.add(new ListData("TCP", tcpView));
-        data.add(new ListData("IP", ipView));
-        data.add(new ListData("ARP", arpView));
-        data.add(new ListData("ICMP", icmpView));
-        data.add(new ListData("IGMP", igmpView));
-        model.setData(data);
-    }
+    
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -90,6 +110,7 @@ public class EventView extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jcbEventType = new javax.swing.JComboBox<>();
 
         jpSignatureHolder.setBackground(new java.awt.Color(204, 204, 204));
 
@@ -138,6 +159,13 @@ public class EventView extends javax.swing.JPanel {
         jLabel4.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         jLabel4.setText("Define Signature");
 
+        jcbEventType.setModel(new CustomActions());
+        jcbEventType.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcbEventTypeActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -146,28 +174,31 @@ public class EventView extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jpSignatureHolder, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jtfEventName, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(35, 35, 35)
-                        .addComponent(jLabel2)
-                        .addGap(208, 208, 208)
-                        .addComponent(jLabel3))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(124, 124, 124)
-                        .addComponent(jLabel4)))
-                .addGap(15, 15, 15))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jbtSave)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jbtDelete)
-                .addGap(39, 39, 39))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
+                                    .addComponent(jcbEventType, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jpSignatureHolder, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jtfEventName, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(35, 35, 35)
+                                .addComponent(jLabel2)
+                                .addGap(208, 208, 208)
+                                .addComponent(jLabel3))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(124, 124, 124)
+                                .addComponent(jLabel4)))
+                        .addGap(15, 15, 15))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jbtSave)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jbtDelete)
+                        .addGap(39, 39, 39))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -184,8 +215,12 @@ public class EventView extends javax.swing.JPanel {
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jpSignatureHolder, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jpSignatureHolder, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(4, 4, 4)
+                        .addComponent(jcbEventType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbtSave)
@@ -239,6 +274,18 @@ public class EventView extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jbtDeleteActionPerformed
 
+    private void jcbEventTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbEventTypeActionPerformed
+        int index = jcbEventType.getSelectedIndex();
+        ListData data = model.getData().get(index);
+        if(data.getData()!=null){
+            jpSignatureHolder.removeAll();
+            jpSignatureHolder.setLayout(new BoxLayout(jpSignatureHolder, BoxLayout.X_AXIS));
+            jpSignatureHolder.add((JPanel)data.getData());
+            jpSignatureHolder.revalidate();
+            jpSignatureHolder.repaint();
+        }
+    }//GEN-LAST:event_jcbEventTypeActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
@@ -248,6 +295,7 @@ public class EventView extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jbtDelete;
     private javax.swing.JButton jbtSave;
+    private javax.swing.JComboBox<String> jcbEventType;
     private javax.swing.JList<String> jlSignature;
     private ListDataModel model;
     private javax.swing.JPanel jpSignatureHolder;
@@ -283,5 +331,18 @@ public class EventView extends javax.swing.JPanel {
 
             }
         });
+    }
+    
+    class CustomActions extends DefaultComboBoxModel{
+
+        String [] items; 
+        public CustomActions() {
+            items = new String[] { "Item 1", "Item 2", "Item 3", "Item 4" };
+            DefaultComboBoxModel defaultComboBoxModel = new DefaultComboBoxModel(items);
+        }
+        
+//    jComboBox1 = new javax.swing.JComboBox<>();
+//    jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+      
     }
 }
