@@ -17,7 +17,6 @@ import java.util.HashMap;
 import java.util.List;
 import javax.swing.BoxLayout;
 import javax.swing.DefaultListModel;
-import javax.swing.ListModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -63,15 +62,13 @@ public class AllEvent extends javax.swing.JPanel {
 
         model.setData(eventList);
         updateEventList();
-        //jlEventList = new JList<>(model);
         jlEventList.addListSelectionListener(new CustomListSelectionListner());
-        //jpListPanel.removeAll();
-        //jpListPanel.setLayout(new BoxLayout(jpListPanel, BoxLayout.X_AXIS));
-        //jpListPanel.add(jlEventList);
+        
         if (event.getIsDeleted()) {
             jpEventViewHolder.removeAll();
             jpEventViewHolder.revalidate();
         }
+        
         this.revalidate();
         this.repaint();
         
@@ -79,36 +76,6 @@ public class AllEvent extends javax.swing.JPanel {
     }
 
     private void updateEventList() {
-        
-//        ListModel<String> modelNames = jlEventList.getModel();
-//        ListModel<String> modelNames = jlEventList.getModel();
-        
-//        DefaultListModel nmodel = (DefaultListModel) jlEventList.getModel();
-//        List<ListData> listDatasToBeAdded = model.getData();
-//        List<ListData> currentListDatas = new ArrayList<>();
-//        for (int i = 0; i < nmodel.getSize(); i++) {
-//            currentListDatas.add((ListData) nmodel.getElementAt(i));
-//        }
-//        
-//        
-//        for (ListData listData : listDatasToBeAdded) {
-//            String name = listData.getName();
-//            System.out.println("listdata name: " + name);
-//            if (!Utilities.containsLocation(currentListDatas, name)) {
-//                nmodel.addElement(listData);
-//            }
-////            if (modelNames.getSize() == 0) {
-////                nmodel.addElement(listData);
-////            } else {
-////                for (int i = 0; i < modelNames.getSize(); i++) {
-////                    System.out.println("hello world  " + modelNames.getElementAt(i));
-////                    if (!modelNames.getElementAt(i).equals(name)) {
-////                        nmodel.addElement(listData);
-////                    } 
-////                }
-////            }
-//            
-//        }
         
         DefaultListModel nmodel = (DefaultListModel) jlEventList.getModel();
         nmodel.removeAllElements();
@@ -119,9 +86,6 @@ public class AllEvent extends javax.swing.JPanel {
             System.out.println("listdata name: " + name);
             nmodel.addElement(listData);
         }
-
-        
-        
     }
 
 
@@ -207,8 +171,6 @@ public class AllEvent extends javax.swing.JPanel {
             jpListPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 420, Short.MAX_VALUE)
         );
-
-        jpPattern.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel2.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         jLabel2.setText("Pattern");
@@ -349,13 +311,8 @@ public class AllEvent extends javax.swing.JPanel {
     }//GEN-LAST:event_jbCreateEventExpressionActionPerformed
 
     private void jbCreateEventActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCreateEventActionPerformed
-        EventView eventView = new EventView(this);
-        jlEventList.setSelectedIndex(-1);
-        jpEventViewHolder.removeAll();
-        jpEventViewHolder.setLayout(new BoxLayout(jpEventViewHolder, BoxLayout.X_AXIS));
-        jpEventViewHolder.add(eventView);
-        jpEventViewHolder.revalidate();
-        jpEventViewHolder.repaint();
+            
+        customInit();
     }//GEN-LAST:event_jbCreateEventActionPerformed
 
 

@@ -331,16 +331,16 @@ public class CourseOfAction extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jcbOpenFlowActionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbOpenFlowActionsActionPerformed
-        Action action = new Action();
-        HashMap<String, Object> fields = action.getFields();
-        String actionName = (String) jcbOpenFlowActions.getSelectedItem();
-        fields.put(actionName, actionName);
-        
-        List<Action> actions = new ArrayList<>();
-        actions.add(action);
-        controller.setActions(actions);
-        
-        Utilities.printController(controller);
+//        Action action = new Action();
+//        HashMap<String, Object> fields = action.getFields();
+//        String actionName = (String) jcbOpenFlowActions.getSelectedItem();
+//        fields.put(actionName, actionName);
+//        
+//        List<Action> actions = new ArrayList<>();
+//        actions.add(action);
+//        controller.setActions(actions);
+//        
+//        Utilities.printController(controller);
     }//GEN-LAST:event_jcbOpenFlowActionsActionPerformed
 
 

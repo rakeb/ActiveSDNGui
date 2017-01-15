@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package activesdngui.views;
+package activesdngui.views.eventviews;
 
 import activesdngui.model.GenericSignaturePanel;
 import activesdngui.model.Signature;
@@ -13,20 +13,19 @@ import java.util.HashMap;
  *
  * @author mislam7
  */
-public class IgmpView extends GenericSignaturePanel {
+public class ArpView extends GenericSignaturePanel {
+    public static String SIG_NAME = "ARP";
 
-    public static String sigName = "IGMP";
-
-    public static final String TOS = "tos";
-    public static final String TTL = "ttl";
     public static final String PROTOCOL = "protocol";
+    public static final String SOURCE_MAC = "sourceMac";
     public static final String SOURCE_IP = "sourceIp";
+    public static final String DESTINATION_MAC = "destinationMac";
     public static final String DESTINATION_IP = "destinationIp";
     
     /**
-     * Creates new form IgmpView
+     * Creates new form ArpView
      */
-    public IgmpView() {
+    public ArpView() {
         initComponents();
     }
 
@@ -39,24 +38,29 @@ public class IgmpView extends GenericSignaturePanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jCheckBox1 = new javax.swing.JCheckBox();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jtfTos = new javax.swing.JTextField();
-        jtfTtl = new javax.swing.JTextField();
         jtfProtocol = new javax.swing.JTextField();
+        jtfSourceMac = new javax.swing.JTextField();
         jtfSourceIp = new javax.swing.JTextField();
+        jtfDestinationMac = new javax.swing.JTextField();
         jtfDestinationIp = new javax.swing.JTextField();
 
-        jLabel1.setText("TOS");
+        jCheckBox1.setText("jCheckBox1");
 
-        jLabel2.setText("TTL");
+        setPreferredSize(new java.awt.Dimension(520, 365));
 
-        jLabel3.setText("Protocol");
+        jLabel1.setText("Protocol");
 
-        jLabel4.setText("Source Ip");
+        jLabel2.setText("Source Mac");
+
+        jLabel3.setText("Source Ip");
+
+        jLabel4.setText("Destination MAC");
 
         jLabel5.setText("Destination Ip");
 
@@ -67,71 +71,72 @@ public class IgmpView extends GenericSignaturePanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel4)
+                    .addComponent(jLabel2)
                     .addComponent(jLabel3)
-                    .addComponent(jLabel2))
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jtfTtl)
-                    .addComponent(jtfProtocol)
-                    .addComponent(jtfSourceIp)
-                    .addComponent(jtfDestinationIp, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
-                    .addComponent(jtfTos))
-                .addGap(237, 237, 237))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jtfDestinationMac, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
+                    .addComponent(jtfSourceIp, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jtfSourceMac, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jtfDestinationIp)
+                    .addComponent(jtfProtocol, javax.swing.GroupLayout.Alignment.LEADING))
+                .addContainerGap(190, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jtfTos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtfProtocol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jtfTtl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtfSourceMac, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jtfProtocol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtfSourceIp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jtfSourceIp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel4)
+                    .addComponent(jtfDestinationMac, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(jtfDestinationIp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(176, 176, 176))
+                .addContainerGap(163, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JTextField jtfDestinationIp;
+    private javax.swing.JTextField jtfDestinationMac;
     private javax.swing.JTextField jtfProtocol;
     private javax.swing.JTextField jtfSourceIp;
-    private javax.swing.JTextField jtfTos;
-    private javax.swing.JTextField jtfTtl;
+    private javax.swing.JTextField jtfSourceMac;
     // End of variables declaration//GEN-END:variables
 
     @Override
     public Signature parseData() {
-        Signature signature = new Signature(sigName, Signature.IGMP_ID);
-
+        Signature signature = new Signature(SIG_NAME, Signature.ARP_ID);
+        
         HashMap<String, Object> fields = signature.getFields();
-        fields.put(TOS, jtfTos.getText());
-        fields.put(TTL, jtfTtl.getText());
         fields.put(PROTOCOL, jtfProtocol.getText());
         fields.put(SOURCE_IP, jtfSourceIp.getText());
         fields.put(DESTINATION_IP, jtfDestinationIp.getText());
+        fields.put(SOURCE_MAC, jtfSourceMac.getText());
+        fields.put(DESTINATION_MAC, jtfDestinationMac.getText());
         
         return signature;
     }
@@ -140,16 +145,16 @@ public class IgmpView extends GenericSignaturePanel {
     public void loadData(Signature signature) {
         if (signature != null) {
             HashMap<String, Object> fields = signature.getFields();
-            jtfTos.setText((String) fields.get(TOS));
-            jtfTtl.setText((String) fields.get(TTL));
             jtfProtocol.setText((String) fields.get(PROTOCOL));
+            jtfSourceMac.setText((String) fields.get(SOURCE_MAC));
             jtfSourceIp.setText((String) fields.get(SOURCE_IP));
+            jtfDestinationMac.setText((String) fields.get(DESTINATION_MAC));
             jtfDestinationIp.setText((String) fields.get(DESTINATION_IP));
         }
     }
 
     @Override
     public Integer getSignatureId() {
-        return Signature.IGMP_ID;
+        return Signature.ARP_ID;
     }
 }

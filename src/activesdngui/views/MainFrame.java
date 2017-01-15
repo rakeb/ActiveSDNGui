@@ -19,6 +19,7 @@ public class MainFrame extends javax.swing.JFrame {
     public static EventSpecificationController controller;
     public static MainFrame mainFrame;
     public static AllEvent allEvtPanel;
+    public static AllActions allActions;
     public static About about;
     public static CourseOfAction courseOfAction;
     private HashMap<Integer, Event> events = new HashMap<>();
@@ -31,14 +32,14 @@ public class MainFrame extends javax.swing.JFrame {
     private void customInit() {
         controller = new EventSpecificationController();
         allEvtPanel = new AllEvent();
+        allActions = new AllActions();
         about = new About();
         courseOfAction = new CourseOfAction(controller);
         jtpMainTabbedPan.addTab("Event", allEvtPanel);
-        jtpMainTabbedPan.addTab("Action", courseOfAction);
+        jtpMainTabbedPan.addTab("Action", allActions);
+//        jtpMainTabbedPan.addTab("Course Of Action", courseOfAction);
         jtpMainTabbedPan.addTab("Policy Bulider", null);
         jtpMainTabbedPan.addTab("About", about);
-//        jtpMainTabbedPan.addTab("Course of Action", courseOfAction);
-//        jtpMainTabbedPan.addTab("Course of Action", courseOfAction);
         
         //sent controller to everyone
         allEvtPanel.setController(controller);

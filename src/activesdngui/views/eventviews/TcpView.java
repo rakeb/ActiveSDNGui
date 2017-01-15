@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package activesdngui.views;
+package activesdngui.views.eventviews;
 
 import activesdngui.model.GenericSignaturePanel;
 import activesdngui.model.Signature;
@@ -15,7 +15,7 @@ import java.util.HashMap;
  */
 public class TcpView extends GenericSignaturePanel {
     
-    public static String sigName = "TCP";
+    public static String SIG_NAME = "TCP";
     
     public static final String SEQUENCE_NUMBER = "sequenceNumber";
     public static final String SOURCE_PORT = "sourcePort";
@@ -100,7 +100,7 @@ public class TcpView extends GenericSignaturePanel {
 
     @Override
     public Signature parseData() {
-        Signature signature = new Signature(sigName, Signature.TCP_ID);
+        Signature signature = new Signature(SIG_NAME, Signature.TCP_ID);
 
         HashMap<String, Object> fields = signature.getFields();
         fields.put(SOURCE_PORT, jtfSourcePort.getText());

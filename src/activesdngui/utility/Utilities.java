@@ -82,14 +82,14 @@ public class Utilities {
 
         //print actions
         System.out.println("\nprinting actions:");
-        for (Action action : actions) {
-            HashMap<String, Object> fields = action.getFields();
-
-            List<String> fieldNames = new ArrayList<>(fields.keySet());
-
-            for (String fieldName : fieldNames) {
-                System.out.println("Filed Name: " + fieldName + "Field value: " + fields.get(fieldName));
-            }
-        }
+//        for (Action action : actions) {
+//            HashMap<Integer, ActionParam> fields = action.getFields();
+//
+//            ArrayList<Integer> arrayList = new ArrayList<>(fields.keySet());
+//
+//            for (String fieldName : fieldNames) {
+//                System.out.println("Filed Name: " + fieldName + "Field value: " + fields.get(fieldName));
+//            }
+//        }
     }
 }

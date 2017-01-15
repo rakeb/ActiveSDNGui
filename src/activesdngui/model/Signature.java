@@ -19,6 +19,8 @@ public class Signature {
     public static final Integer ARP_ID = 2;
     public static final Integer ICMP_ID = 3;
     public static final Integer IGMP_ID = 4;
+    public static final Integer CONFIG_ID = 5;
+    public static final Integer INVESTIG_ID = 6;
     
     
     private String name;

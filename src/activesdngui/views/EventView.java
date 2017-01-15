@@ -5,16 +5,17 @@
  */
 package activesdngui.views;
 
-import activesdngui.model.Action;
+import activesdngui.views.eventviews.IgmpView;
+import activesdngui.views.eventviews.TcpView;
+import activesdngui.views.eventviews.IcmpView;
+import activesdngui.views.eventviews.ArpView;
+import activesdngui.views.eventviews.IpView;
 import activesdngui.model.Event;
 import activesdngui.model.GenericSignaturePanel;
 import activesdngui.model.ListData;
 import activesdngui.model.ListDataModel;
-//import activesdngui.model.ListDataModel;
 import activesdngui.model.Signature;
-import activesdngui.utility.Utilities;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import javax.swing.BoxLayout;
 import javax.swing.DefaultComboBoxModel;
@@ -31,6 +32,7 @@ public class EventView extends javax.swing.JPanel {
 
     private Event event = null;
     private ListDataModel model = new ListDataModel();
+    private AllEvent allEventPanel;
     
     TcpView tcpView = new TcpView();
     IpView ipView = new IpView();
@@ -38,9 +40,6 @@ public class EventView extends javax.swing.JPanel {
     IgmpView igmpView = new IgmpView();
     IcmpView icmpView = new IcmpView();
     
-    
-    private AllEvent allEventPanel;
-        
     public EventView() {
         initComponents();
         customInit();
@@ -67,15 +66,6 @@ public class EventView extends javax.swing.JPanel {
         for (ListData data : datas) {
             jcbEventType.addItem(data.getName());
         }
-        
-//        String[] openFlowActions = {"Drop", "Notify", "Drop and Notify", "Migrate"};
-//
-//        //Create the combo box, select item at index 4.
-//        //Indices start at 0, so 4 specifies the pig.
-//        for (String openFlowAction : openFlowActions) {
-//            jcbOpenFlowActions.addItem(openFlowAction);
-//        }
-//        jcbOpenFlowActions.setSelectedIndex(0);
     }
     
     public void loadData(Event e) {
@@ -303,9 +293,5 @@ public class EventView extends javax.swing.JPanel {
             items = new String[] { "Item 1", "Item 2", "Item 3", "Item 4" };
             DefaultComboBoxModel defaultComboBoxModel = new DefaultComboBoxModel(items);
         }
-        
-//    jComboBox1 = new javax.swing.JComboBox<>();
-//    jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-      
     }
 }

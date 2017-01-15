@@ -18,41 +18,51 @@ public class Action {
     }
     public static final String ACTION = "ACTION";
     
-    private String actionName;
-    private Integer actionId;
-    private HashMap<String, Object> fields = new HashMap<>();
+    private String name;
+    private Integer id;
+    public static Integer currentActionId = 0;
+    private Boolean isDeleted = false;
+    private HashMap<Integer, Signature> signatures = new HashMap<>();
 
     public Action() {
     }
 
     
     public Action(String actionName, Integer actionId) {
-        this.actionName = actionName;
-        this.actionId = actionId;
+        this.name = actionName;
+        this.id = actionId;
     }
 
-    public String getActionName() {
-        return actionName;
+    public String getName() {
+        return name;
     }
 
-    public void setActionName(String actionName) {
-        this.actionName = actionName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public Integer getActionId() {
-        return actionId;
+    public Integer getId() {
+        return id;
     }
 
-    public void setActionId(Integer actionId) {
-        this.actionId = actionId;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public HashMap<String, Object> getFields() {
-        return fields;
+    public HashMap<Integer, Signature> getSignatures() {
+        return signatures;
     }
 
-    public void setFields(HashMap<String, Object> fields) {
-        this.fields = fields;
+    public void setSignatures(HashMap<Integer, Signature> signatures) {
+        this.signatures = signatures;
+    }
+
+    public Boolean getIsDeleted() {
+        return isDeleted;
+    }
+
+    public void setIsDeleted(Boolean isDeleted) {
+        this.isDeleted = isDeleted;
     }
     
 }
