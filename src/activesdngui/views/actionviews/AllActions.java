@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package activesdngui.views;
+package activesdngui.views.actionviews;
 
 import activesdngui.views.actionviews.ActionView;
 import activesdngui.controller.EventSpecificationController;

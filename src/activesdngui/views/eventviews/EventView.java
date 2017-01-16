@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package activesdngui.views;
+package activesdngui.views.eventviews;
 
 import activesdngui.views.eventviews.IgmpView;
 import activesdngui.views.eventviews.TcpView;

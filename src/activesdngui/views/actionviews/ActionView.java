@@ -11,7 +11,6 @@ import activesdngui.model.GenericSignaturePanel;
 import activesdngui.model.ListData;
 import activesdngui.model.ListDataModel;
 import activesdngui.model.Signature;
-import activesdngui.views.AllActions;
 import activesdngui.views.actionviews.ConfigurationActionView;
 import activesdngui.views.actionviews.InvestigationActionView;
 import activesdngui.views.eventviews.ArpView;

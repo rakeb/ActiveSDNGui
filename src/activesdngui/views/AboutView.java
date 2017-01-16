@@ -9,12 +9,12 @@ package activesdngui.views;
  *
  * @author mislam7
  */
-public class About extends javax.swing.JPanel {
+public class AboutView extends javax.swing.JPanel {
 
     /**
      * Creates new form About
      */
-    public About() {
+    public AboutView() {
         initComponents();
     }
 

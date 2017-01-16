@@ -5,6 +5,8 @@
  */
 package activesdngui.views;
 
+import activesdngui.views.eventviews.AllEvent;
+import activesdngui.views.actionviews.AllActions;
 import activesdngui.controller.EventSpecificationController;
 import activesdngui.model.Event;
 import activesdngui.views.policybuilder.PolicyBuilderView;
@@ -22,8 +24,7 @@ public class MainFrame extends javax.swing.JFrame {
     public static AllEvent allEvtPanel;
     public static AllActions allActions;
     public static PolicyBuilderView policyBuilder;
-    public static About about;
-    public static CourseOfAction courseOfAction;
+    public static AboutView about;
     private HashMap<Integer, Event> events = new HashMap<>();
 
     public MainFrame() {
@@ -36,8 +37,7 @@ public class MainFrame extends javax.swing.JFrame {
         allEvtPanel = new AllEvent();
         allActions = new AllActions();
         policyBuilder = new PolicyBuilderView();
-        about = new About();
-        courseOfAction = new CourseOfAction(controller);
+        about = new AboutView();
         jtpMainTabbedPan.addTab("Event", allEvtPanel);
         jtpMainTabbedPan.addTab("Action", allActions);
 //        jtpMainTabbedPan.addTab("Course Of Action", courseOfAction);
