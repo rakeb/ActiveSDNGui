@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package activesdngui.views;
+package activesdngui.views.actionviews;
 
 import activesdngui.model.Action;
 import activesdngui.model.Event;
@@ -11,6 +11,7 @@ import activesdngui.model.GenericSignaturePanel;
 import activesdngui.model.ListData;
 import activesdngui.model.ListDataModel;
 import activesdngui.model.Signature;
+import activesdngui.views.AllActions;
 import activesdngui.views.actionviews.ConfigurationActionView;
 import activesdngui.views.actionviews.InvestigationActionView;
 import activesdngui.views.eventviews.ArpView;
@@ -22,6 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.BoxLayout;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -213,18 +215,18 @@ public class ActionView extends javax.swing.JPanel {
             }
         }
 
-        allActions.eventUpdated(action);
+        allActions.actionUpdated(action);
 
     }//GEN-LAST:event_jbtSaveActionPerformed
 
     private void jbtDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtDeleteActionPerformed
-//        if (event != null) {
-//            event.setIsDeleted(Boolean.TRUE);
-//            allEventPanel.eventUpdated(event);
-//        }
-//        else {
-//            JOptionPane.showMessageDialog(this, "Cannot delete. Event not saved yet");
-//        }
+        if (action != null) {
+            action.setIsDeleted(Boolean.TRUE);
+            allActions.actionUpdated(action);
+        }
+        else {
+            JOptionPane.showMessageDialog(this, "Cannot delete. Action not saved yet");
+        }
     }//GEN-LAST:event_jbtDeleteActionPerformed
 
     private void jcbActionTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbActionTypeActionPerformed

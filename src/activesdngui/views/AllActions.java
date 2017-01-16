@@ -5,6 +5,7 @@
  */
 package activesdngui.views;
 
+import activesdngui.views.actionviews.ActionView;
 import activesdngui.controller.EventSpecificationController;
 import activesdngui.model.Action;
 import activesdngui.model.ListData;
@@ -46,7 +47,7 @@ public class AllActions extends javax.swing.JPanel {
         jpActionViewHolder.repaint();
     }
     
-    void eventUpdated(Action action) {
+    public void actionUpdated(Action action) {
         if (action.getIsDeleted()) {
             actions.remove(action.getId());
         } else {
