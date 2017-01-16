@@ -67,13 +67,15 @@ public class MainFrame extends javax.swing.JFrame {
         jpPolicyHolder.setLayout(jpPolicyHolderLayout);
         jpPolicyHolderLayout.setHorizontalGroup(
             jpPolicyHolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jtpMainTabbedPan, javax.swing.GroupLayout.DEFAULT_SIZE, 1202, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpPolicyHolderLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jtpMainTabbedPan, javax.swing.GroupLayout.PREFERRED_SIZE, 1261, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jpPolicyHolderLayout.setVerticalGroup(
             jpPolicyHolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpPolicyHolderLayout.createSequentialGroup()
-                .addComponent(jtpMainTabbedPan, javax.swing.GroupLayout.DEFAULT_SIZE, 582, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jtpMainTabbedPan, javax.swing.GroupLayout.PREFERRED_SIZE, 754, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         setJMenuBar(jmbMainMenu);
