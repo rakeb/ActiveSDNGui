@@ -59,7 +59,6 @@ public class MainFrame extends javax.swing.JFrame {
 
         jpPolicyHolder = new javax.swing.JPanel();
         jtpMainTabbedPan = new javax.swing.JTabbedPane();
-        jmbMainMenu = new javax.swing.JMenuBar();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -67,18 +66,12 @@ public class MainFrame extends javax.swing.JFrame {
         jpPolicyHolder.setLayout(jpPolicyHolderLayout);
         jpPolicyHolderLayout.setHorizontalGroup(
             jpPolicyHolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpPolicyHolderLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jtpMainTabbedPan, javax.swing.GroupLayout.PREFERRED_SIZE, 1261, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jtpMainTabbedPan, javax.swing.GroupLayout.DEFAULT_SIZE, 1273, Short.MAX_VALUE)
         );
         jpPolicyHolderLayout.setVerticalGroup(
             jpPolicyHolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpPolicyHolderLayout.createSequentialGroup()
-                .addComponent(jtpMainTabbedPan, javax.swing.GroupLayout.PREFERRED_SIZE, 754, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jtpMainTabbedPan, javax.swing.GroupLayout.DEFAULT_SIZE, 766, Short.MAX_VALUE)
         );
-
-        setJMenuBar(jmbMainMenu);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -125,7 +118,6 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuBar jmbMainMenu;
     private javax.swing.JPanel jpPolicyHolder;
     private javax.swing.JTabbedPane jtpMainTabbedPan;
     // End of variables declaration//GEN-END:variables

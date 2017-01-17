@@ -150,8 +150,6 @@ public class EventView extends javax.swing.JPanel {
             }
         });
 
-        jpSignatureHolder.setBackground(new java.awt.Color(102, 102, 102));
-
         javax.swing.GroupLayout jpSignatureHolderLayout = new javax.swing.GroupLayout(jpSignatureHolder);
         jpSignatureHolder.setLayout(jpSignatureHolderLayout);
         jpSignatureHolderLayout.setHorizontalGroup(
@@ -213,11 +211,11 @@ public class EventView extends javax.swing.JPanel {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
+                .addContainerGap()
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jcbEventType, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(540, Short.MAX_VALUE))
+                .addContainerGap(564, Short.MAX_VALUE))
         );
 
         jSplitPane4.setLeftComponent(jPanel1);
