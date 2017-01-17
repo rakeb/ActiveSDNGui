@@ -6,18 +6,17 @@
 package activesdngui.views.actionviews;
 
 import activesdngui.model.Action;
+import activesdngui.views.eventviews.*;
+import activesdngui.views.eventviews.IgmpView;
+import activesdngui.views.eventviews.TcpView;
+import activesdngui.views.eventviews.IcmpView;
+import activesdngui.views.eventviews.ArpView;
+import activesdngui.views.eventviews.IpView;
 import activesdngui.model.Event;
 import activesdngui.model.GenericSignaturePanel;
 import activesdngui.model.ListData;
 import activesdngui.model.ListDataModel;
 import activesdngui.model.Signature;
-import activesdngui.views.actionviews.ConfigurationActionView;
-import activesdngui.views.actionviews.InvestigationActionView;
-import activesdngui.views.eventviews.ArpView;
-import activesdngui.views.eventviews.IcmpView;
-import activesdngui.views.eventviews.IgmpView;
-import activesdngui.views.eventviews.IpView;
-import activesdngui.views.eventviews.TcpView;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.BoxLayout;
@@ -29,10 +28,10 @@ import javax.swing.event.DocumentListener;
 
 /**
  *
- * @author mislam7
+ * @author Mazharul
  */
 public class ActionView extends javax.swing.JPanel {
-    
+
     private Action action = null;
     private ListDataModel model = new ListDataModel();
     private AllActions allActions;
@@ -79,7 +78,8 @@ public class ActionView extends javax.swing.JPanel {
         }
         
     }
-
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -89,25 +89,50 @@ public class ActionView extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jpActionParamHolder = new javax.swing.JPanel();
-        jbtSave = new javax.swing.JButton();
-        jbtDelete = new javax.swing.JButton();
+        jSplitPane3 = new javax.swing.JSplitPane();
+        jPanel5 = new javax.swing.JPanel();
         jtfActionName = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+        jPanel6 = new javax.swing.JPanel();
+        jSplitPane4 = new javax.swing.JSplitPane();
+        jPanel8 = new javax.swing.JPanel();
+        jbtSave = new javax.swing.JButton();
+        jbtDelete = new javax.swing.JButton();
+        jpActionParamHolder = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         jcbActionType = new javax.swing.JComboBox<>();
 
-        javax.swing.GroupLayout jpActionParamHolderLayout = new javax.swing.GroupLayout(jpActionParamHolder);
-        jpActionParamHolder.setLayout(jpActionParamHolderLayout);
-        jpActionParamHolderLayout.setHorizontalGroup(
-            jpActionParamHolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 520, Short.MAX_VALUE)
+        setPreferredSize(new java.awt.Dimension(710, 520));
+
+        jSplitPane3.setDividerLocation(35);
+        jSplitPane3.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
+
+        jLabel1.setText("Action name:");
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(jtfActionName, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 366, Short.MAX_VALUE))
         );
-        jpActionParamHolderLayout.setVerticalGroup(
-            jpActionParamHolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 365, Short.MAX_VALUE)
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jtfActionName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
+
+        jSplitPane3.setTopComponent(jPanel5);
+
+        jSplitPane4.setDividerLocation(150);
 
         jbtSave.setText("Save");
         jbtSave.addActionListener(new java.awt.event.ActionListener() {
@@ -123,14 +148,45 @@ public class ActionView extends javax.swing.JPanel {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
-        jLabel1.setText("Action name:");
+        javax.swing.GroupLayout jpActionParamHolderLayout = new javax.swing.GroupLayout(jpActionParamHolder);
+        jpActionParamHolder.setLayout(jpActionParamHolderLayout);
+        jpActionParamHolderLayout.setHorizontalGroup(
+            jpActionParamHolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jpActionParamHolderLayout.setVerticalGroup(
+            jpActionParamHolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 584, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+                .addGap(0, 421, Short.MAX_VALUE)
+                .addComponent(jbtSave)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jbtDelete))
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jpActionParamHolder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+                .addComponent(jpActionParamHolder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jbtSave)
+                    .addComponent(jbtDelete))
+                .addContainerGap())
+        );
+
+        jSplitPane4.setRightComponent(jPanel8);
 
         jLabel2.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         jLabel2.setText("Action Type");
-
-        jLabel3.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
-        jLabel3.setText("Action Fields");
 
         jcbActionType.setModel(new CustomActions());
         jcbActionType.addActionListener(new java.awt.event.ActionListener() {
@@ -139,59 +195,55 @@ public class ActionView extends javax.swing.JPanel {
             }
         });
 
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jLabel2)
+                .addGap(0, 67, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jcbActionType, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jcbActionType, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(564, Short.MAX_VALUE))
+        );
+
+        jSplitPane4.setLeftComponent(jPanel1);
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jSplitPane4, javax.swing.GroupLayout.Alignment.TRAILING)
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jSplitPane4))
+        );
+
+        jSplitPane3.setRightComponent(jPanel6);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jtfActionName, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(128, 128, 128)
-                                .addComponent(jbtSave)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jbtDelete)
-                                .addGap(54, 54, 54))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jcbActionType, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 152, Short.MAX_VALUE)
-                        .addComponent(jLabel3)
-                        .addGap(261, 261, 261))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jpActionParamHolder, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addComponent(jSplitPane3)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(5, 5, 5)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel1)
-                    .addComponent(jtfActionName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(jcbActionType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel3)))
-                .addGap(18, 18, 18)
-                .addComponent(jpActionParamHolder, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbtSave)
-                    .addComponent(jbtDelete))
-                .addContainerGap())
+                .addContainerGap()
+                .addComponent(jSplitPane3))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -215,7 +267,6 @@ public class ActionView extends javax.swing.JPanel {
         }
 
         allActions.actionUpdated(action);
-
     }//GEN-LAST:event_jbtSaveActionPerformed
 
     private void jbtDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtDeleteActionPerformed
@@ -244,23 +295,19 @@ public class ActionView extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JSplitPane jSplitPane3;
+    private javax.swing.JSplitPane jSplitPane4;
     private javax.swing.JButton jbtDelete;
     private javax.swing.JButton jbtSave;
     private javax.swing.JComboBox<String> jcbActionType;
     private javax.swing.JPanel jpActionParamHolder;
     private javax.swing.JTextField jtfActionName;
     // End of variables declaration//GEN-END:variables
-    
-    class CustomActions extends DefaultComboBoxModel{
 
-        String [] items; 
-        public CustomActions() {
-            items = new String[] { "Item 1", "Item 2", "Item 3", "Item 4" };
-            DefaultComboBoxModel defaultComboBoxModel = new DefaultComboBoxModel(items);
-        }
-    }
-    
     private void handleButtons() {
         jbtSave.setEnabled(false);
         jbtDelete.setEnabled(false);
@@ -290,5 +337,14 @@ public class ActionView extends javax.swing.JPanel {
 
             }
         });
+    }
+    
+    class CustomActions extends DefaultComboBoxModel{
+
+        String [] items; 
+        public CustomActions() {
+            items = new String[] { "Item 1", "Item 2", "Item 3", "Item 4" };
+            DefaultComboBoxModel defaultComboBoxModel = new DefaultComboBoxModel(items);
+        }
     }
 }
