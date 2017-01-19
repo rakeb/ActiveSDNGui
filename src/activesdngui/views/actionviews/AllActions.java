@@ -37,11 +37,13 @@ public class AllActions extends javax.swing.JPanel {
     }
     
     private void customInit() {
-        ActionView actionView = new ActionView(this);
+//        ActionView actionView = new ActionView(this);
+        ActionSpecView actionSpecView = new ActionSpecView(this);
         jlActionList.setSelectedIndex(-1);
         jpActionViewHolder.removeAll();
         jpActionViewHolder.setLayout(new BoxLayout(jpActionViewHolder, BoxLayout.X_AXIS));
-        jpActionViewHolder.add(actionView);
+//        jpActionViewHolder.add(actionView);
+        jpActionViewHolder.add(actionSpecView);
         jpActionViewHolder.revalidate();
         jpActionViewHolder.repaint();
     }
@@ -58,7 +60,7 @@ public class AllActions extends javax.swing.JPanel {
 
         for (Integer id : ids) {
             Action e = actions.get(id);
-            System.out.println("Avent: " + id + ", name: " + e.getName());
+            System.out.println("Action: " + id + ", name: " + e.getName());
             actionList.add(new ListData(e.getName(), e));
         }
 
@@ -127,18 +129,16 @@ public class AllActions extends javax.swing.JPanel {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
-                    .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                 .addContainerGap())
+            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 519, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 526, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -148,11 +148,11 @@ public class AllActions extends javax.swing.JPanel {
         jpActionViewHolder.setLayout(jpActionViewHolderLayout);
         jpActionViewHolderLayout.setHorizontalGroup(
             jpActionViewHolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 904, Short.MAX_VALUE)
+            .addGap(0, 910, Short.MAX_VALUE)
         );
         jpActionViewHolderLayout.setVerticalGroup(
             jpActionViewHolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 562, Short.MAX_VALUE)
+            .addGap(0, 568, Short.MAX_VALUE)
         );
 
         jSplitPane1.setRightComponent(jpActionViewHolder);
@@ -161,15 +161,11 @@ public class AllActions extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1165, Short.MAX_VALUE))
+            .addComponent(jSplitPane1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jSplitPane1))
+            .addComponent(jSplitPane1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
     }// </editor-fold>//GEN-END:initComponents
 

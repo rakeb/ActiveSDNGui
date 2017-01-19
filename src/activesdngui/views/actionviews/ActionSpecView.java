@@ -23,7 +23,7 @@ import javax.swing.event.DocumentListener;
  *
  * @author Mazharul
  */
-public class ActionView extends javax.swing.JPanel {
+public class ActionSpecView extends javax.swing.JPanel {
 
     private Action action = null;
     private ListDataModel model = new ListDataModel();
@@ -35,12 +35,12 @@ public class ActionView extends javax.swing.JPanel {
     /**
      * Creates new form ActionView
      */
-    public ActionView() {
+    public ActionSpecView() {
         initComponents();
         customInit();
     }
     
-    public ActionView(AllActions allActions) {
+    public ActionSpecView(AllActions allActions) {
         this.allActions = allActions;
         initComponents();
         customInit();
@@ -54,8 +54,15 @@ public class ActionView extends javax.swing.JPanel {
         datas.add(new ListData("Investigation Action", investigationActionView));
         model.setData(datas);
         
-        for (ListData data : datas) {
-            jcbActionType.addItem(data.getName());
+        addComboBoxItems();
+    }
+    
+    private void addComboBoxItems() {
+        DefaultComboBoxModel boxModel;
+        
+        boxModel = (DefaultComboBoxModel) jcbAction.getModel();
+        for (ListData data : model.getData()) {
+            boxModel.addElement(data);
         }
     }
     
@@ -94,7 +101,19 @@ public class ActionView extends javax.swing.JPanel {
         jpActionParamHolder = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jcbActionType = new javax.swing.JComboBox<>();
+        jcbAction = new javax.swing.JComboBox<>();
+        jLabel3 = new javax.swing.JLabel();
+        jcbOn = new javax.swing.JComboBox<>();
+        jLabel4 = new javax.swing.JLabel();
+        jcbOf = new javax.swing.JComboBox<>();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jcbBy = new javax.swing.JComboBox<>();
+        jcbUsing = new javax.swing.JComboBox<>();
+        jcbFor = new javax.swing.JComboBox<>();
+        jTextField1 = new javax.swing.JTextField();
 
         setPreferredSize(new java.awt.Dimension(710, 520));
 
@@ -125,7 +144,7 @@ public class ActionView extends javax.swing.JPanel {
 
         jSplitPane3.setTopComponent(jPanel5);
 
-        jSplitPane4.setDividerLocation(150);
+        jSplitPane4.setDividerLocation(250);
 
         jbtSave.setText("Save");
         jbtSave.addActionListener(new java.awt.event.ActionListener() {
@@ -157,7 +176,7 @@ public class ActionView extends javax.swing.JPanel {
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
-                .addGap(0, 380, Short.MAX_VALUE)
+                .addGap(0, 280, Short.MAX_VALUE)
                 .addComponent(jbtSave)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jbtDelete))
@@ -178,12 +197,59 @@ public class ActionView extends javax.swing.JPanel {
 
         jSplitPane4.setRightComponent(jPanel8);
 
-        jLabel2.setText("Action Type");
+        jLabel2.setText("DO");
 
-        jcbActionType.setModel(new CustomActions());
-        jcbActionType.addActionListener(new java.awt.event.ActionListener() {
+        jcbAction.setModel(new DefaultComboBoxModel<String>());
+        jcbAction.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jcbActionTypeActionPerformed(evt);
+                jcbActionActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setText("ON");
+
+        jcbOn.setModel(new DefaultComboBoxModel<String>());
+        jcbOn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcbOnActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setText("OF");
+
+        jcbOf.setModel(new DefaultComboBoxModel<String>());
+        jcbOf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcbOfActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setText("BY");
+
+        jLabel6.setText("USING");
+
+        jLabel7.setText("FOR");
+
+        jLabel8.setText("OUTCOME");
+
+        jcbBy.setModel(new DefaultComboBoxModel<String>());
+        jcbBy.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcbByActionPerformed(evt);
+            }
+        });
+
+        jcbUsing.setModel(new DefaultComboBoxModel<String>());
+        jcbUsing.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcbUsingActionPerformed(evt);
+            }
+        });
+
+        jcbFor.setModel(new DefaultComboBoxModel<String>());
+        jcbFor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcbForActionPerformed(evt);
             }
         });
 
@@ -192,20 +258,70 @@ public class ActionView extends javax.swing.JPanel {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel2)
-                .addGap(0, 73, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jcbActionType, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jcbAction, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jcbOn, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jcbOf, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jcbBy, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                        .addComponent(jcbUsing, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel8))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jTextField1)
+                            .addComponent(jcbFor, 0, 148, Short.MAX_VALUE))))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jcbActionType, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(564, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jcbAction, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jcbOn, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(10, 10, 10)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4)
+                    .addComponent(jcbOf, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(jcbBy, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(jcbUsing, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(jcbFor, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(224, Short.MAX_VALUE))
         );
 
         jSplitPane4.setLeftComponent(jPanel1);
@@ -271,8 +387,8 @@ public class ActionView extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jbtDeleteActionPerformed
 
-    private void jcbActionTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbActionTypeActionPerformed
-        int index = jcbActionType.getSelectedIndex();
+    private void jcbActionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbActionActionPerformed
+        int index = jcbAction.getSelectedIndex();
         ListData data = model.getData().get(index);
         if(data.getData()!=null){
             jpActionParamHolder.removeAll();
@@ -281,21 +397,52 @@ public class ActionView extends javax.swing.JPanel {
             jpActionParamHolder.revalidate();
             jpActionParamHolder.repaint();
         }
-    }//GEN-LAST:event_jcbActionTypeActionPerformed
+    }//GEN-LAST:event_jcbActionActionPerformed
+
+    private void jcbOnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbOnActionPerformed
+    }//GEN-LAST:event_jcbOnActionPerformed
+
+    private void jcbOfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbOfActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jcbOfActionPerformed
+
+    private void jcbByActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbByActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jcbByActionPerformed
+
+    private void jcbUsingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbUsingActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jcbUsingActionPerformed
+
+    private void jcbForActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbForActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jcbForActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JSplitPane jSplitPane3;
     private javax.swing.JSplitPane jSplitPane4;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JButton jbtDelete;
     private javax.swing.JButton jbtSave;
-    private javax.swing.JComboBox<String> jcbActionType;
+    private javax.swing.JComboBox<String> jcbAction;
+    private javax.swing.JComboBox<String> jcbBy;
+    private javax.swing.JComboBox<String> jcbFor;
+    private javax.swing.JComboBox<String> jcbOf;
+    private javax.swing.JComboBox<String> jcbOn;
+    private javax.swing.JComboBox<String> jcbUsing;
     private javax.swing.JPanel jpActionParamHolder;
     private javax.swing.JTextField jtfActionName;
     // End of variables declaration//GEN-END:variables
@@ -330,13 +477,13 @@ public class ActionView extends javax.swing.JPanel {
             }
         });
     }
-    
-    class CustomActions extends DefaultComboBoxModel{
 
-        String [] items; 
-        public CustomActions() {
-            items = new String[] { "Item 1", "Item 2", "Item 3", "Item 4" };
-            DefaultComboBoxModel defaultComboBoxModel = new DefaultComboBoxModel(items);
-        }
-    }
+//    class CustomActions extends DefaultComboBoxModel{
+//
+//        String [] items; 
+//        public CustomActions() {
+//            items = new String[] { "Item 1", "Item 2", "Item 3", "Item 4" };
+//            DefaultComboBoxModel defaultComboBoxModel = new DefaultComboBoxModel(items);
+//        }
+//    }
 }
