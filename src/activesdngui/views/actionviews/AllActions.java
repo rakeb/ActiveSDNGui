@@ -189,13 +189,16 @@ public class AllActions extends javax.swing.JPanel {
             Utilities.pirntArray(indexs);
             int index = jlActionList.getSelectedIndex();
             if (index != -1) {
-                ListData data = model.getData().get(index);
+                ListData data = (ListData) model.getData().get(index);
 
-                ActionView actionView = new ActionView(AllActions.this);
-                actionView.loadData((Action) data.getData());
+//                ActionView actionView = new ActionView(AllActions.this);
+//                actionView.loadData((Action) data.getData());
+                ActionSpecView actionSpecView = new ActionSpecView();
+                actionSpecView.loadData((Action) data.getData());
                 jpActionViewHolder.removeAll();
                 jpActionViewHolder.setLayout(new BoxLayout(jpActionViewHolder, BoxLayout.X_AXIS));
-                jpActionViewHolder.add(actionView);
+//                jpActionViewHolder.add(actionView);
+                jpActionViewHolder.add(actionSpecView);
                 jpActionViewHolder.revalidate();
                 jpActionViewHolder.repaint();
             }

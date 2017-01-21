@@ -9,36 +9,29 @@ import activesdngui.model.GenericSignaturePanel;
 import activesdngui.model.ListData;
 import activesdngui.model.ListDataModel;
 import activesdngui.model.Signature;
-import static activesdngui.views.eventviews.ArpView.DESTINATION_IP;
-import static activesdngui.views.eventviews.ArpView.DESTINATION_MAC;
-import static activesdngui.views.eventviews.ArpView.PROTOCOL;
-import static activesdngui.views.eventviews.ArpView.SOURCE_IP;
-import static activesdngui.views.eventviews.ArpView.SOURCE_MAC;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
-import static activesdngui.views.eventviews.ArpView.SIG_NAME;
 
 /**
  *
  * @author mislam7
  */
 public class InvestigationActionView extends GenericSignaturePanel {
-    
+
     public static String SIG_NAME = "CONFIG_ACTION";
 
     public static final String ACTION_TYPE = "ActionType";
     public static final String RATE = "Rate";
     public static final String SWITCH_ID = "SwitchId";
     public static final String TIME = "Time";
-    
+
     private ListDataModel model = new ListDataModel();
     ElephantCheckerView elephantCheckerView = new ElephantCheckerView();
     ProtocolCheckerView protocolCheckerView = new ProtocolCheckerView();
     NewComerCheckerView newComerCheckerView = new NewComerCheckerView();
-    
 
     /**
      * Creates new form InvestigationAction
@@ -47,15 +40,15 @@ public class InvestigationActionView extends GenericSignaturePanel {
         initComponents();
         customInit();
     }
-    
+
     private void customInit() {
-        
+
         List<ListData> datas = new ArrayList<>();
         datas.add(new ListData("Check Elephant Flow", elephantCheckerView));
         datas.add(new ListData("Check ICMP/UDP", protocolCheckerView));
         datas.add(new ListData("Check New Comers", newComerCheckerView));
         model.setData(datas);
-        
+
         for (ListData data : datas) {
             jcbInvestigationActionType.addItem(data.getName());
         }
@@ -127,11 +120,11 @@ public class InvestigationActionView extends GenericSignaturePanel {
 
     private void jcbInvestigationActionTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbInvestigationActionTypeActionPerformed
         int index = jcbInvestigationActionType.getSelectedIndex();
-        ListData data = model.getData().get(index);
-        if(data.getData()!=null){
+        ListData data = (ListData) model.getData().get(index);
+        if (data.getData() != null) {
             jpInvestigationActionParamHolder.removeAll();
             jpInvestigationActionParamHolder.setLayout(new BoxLayout(jpInvestigationActionParamHolder, BoxLayout.X_AXIS));
-            jpInvestigationActionParamHolder.add((JPanel)data.getData());
+            jpInvestigationActionParamHolder.add((JPanel) data.getData());
             jpInvestigationActionParamHolder.revalidate();
             jpInvestigationActionParamHolder.repaint();
         }
@@ -146,41 +139,42 @@ public class InvestigationActionView extends GenericSignaturePanel {
 
     @Override
     public Signature parseData() {
-        Signature signature = new Signature(SIG_NAME, Signature.INVESTIG_ID);
-        
-        HashMap<String, Object> fields = signature.getFields();
-        
-        int index = jcbInvestigationActionType.getSelectedIndex();
-        ListData data = model.getData().get(index);
-        
-        if (data.getData() instanceof NewComerCheckerView) {
-            fields.put(SWITCH_ID, newComerCheckerView.getJtfSwitchId().getText());
-            fields.put(TIME, newComerCheckerView.getJtfTime().getText());
-        } else if (data.getData() instanceof ElephantCheckerView) {
-            fields.put(RATE, elephantCheckerView.getJtfRate().getText());
-        } else {
-            fields.put(RATE, protocolCheckerView.getJtfRate().getText());
-        }
-        
-        return signature;
+//        Signature signature = new Signature(SIG_NAME, Signature.INVESTIG_ID);
+//        
+//        HashMap<String, Object> fields = signature.getFields();
+//        
+//        int index = jcbInvestigationActionType.getSelectedIndex();
+//        ListData data = (ListData) model.getData().get(index);
+//        
+//        if (data.getData() instanceof NewComerCheckerView) {
+//            fields.put(SWITCH_ID, newComerCheckerView.getJtfSwitchId().getText());
+//            fields.put(TIME, newComerCheckerView.getJtfTime().getText());
+//        } else if (data.getData() instanceof ElephantCheckerView) {
+//            fields.put(RATE, elephantCheckerView.getJtfRate().getText());
+//        } else {
+//            fields.put(RATE, protocolCheckerView.getJtfRate().getText());
+//        }
+//        
+//        return signature;
+        return null;
     }
 
     @Override
     public void loadData(Signature signature) {
-        if (signature != null) {
-            HashMap<String, Object> fields = signature.getFields();
-            int index = jcbInvestigationActionType.getSelectedIndex();
-            ListData data = model.getData().get(index);
-
-            if (data.getData() instanceof NewComerCheckerView) {
-                newComerCheckerView.getJtfSwitchId().setText((String) fields.get(SWITCH_ID));
-                newComerCheckerView.getJtfTime().setText((String) fields.get(TIME));
-            } else if (data.getData() instanceof ElephantCheckerView) {
-                elephantCheckerView.getJtfRate().setText((String) fields.get(RATE));
-            } else {
-                protocolCheckerView.getJtfRate().setText((String) fields.get(RATE));
-            }
-        }
+//        if (signature != null) {
+//            HashMap<String, Object> fields = signature.getFields();
+//            int index = jcbInvestigationActionType.getSelectedIndex();
+//            ListData data = (ListData) model.getData().get(index);
+//
+//            if (data.getData() instanceof NewComerCheckerView) {
+//                newComerCheckerView.getJtfSwitchId().setText((String) fields.get(SWITCH_ID));
+//                newComerCheckerView.getJtfTime().setText((String) fields.get(TIME));
+//            } else if (data.getData() instanceof ElephantCheckerView) {
+//                elephantCheckerView.getJtfRate().setText((String) fields.get(RATE));
+//            } else {
+//                protocolCheckerView.getJtfRate().setText((String) fields.get(RATE));
+//            }
+//        }
     }
 
     @Override

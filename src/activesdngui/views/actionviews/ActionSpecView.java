@@ -6,12 +6,15 @@
 package activesdngui.views.actionviews;
 
 import activesdngui.model.Action;
+import activesdngui.model.ActionListData;
 import activesdngui.model.GenericSignaturePanel;
 import activesdngui.model.ListData;
 import activesdngui.model.ListDataModel;
 import activesdngui.model.Signature;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.swing.BoxLayout;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
@@ -23,63 +26,120 @@ import javax.swing.event.DocumentListener;
  *
  * @author Mazharul
  */
-public class ActionSpecView extends javax.swing.JPanel {
+public class ActionSpecView extends JPanel {
+
+    public static final String DO = "DO";
+    public static final String ON = "ON";
+    public static final String OF = "OF";
+    public static final String BY = "BY";
+    public static final String USING = "USING";
+    public static final String FOR = "FOR";
+    public static final String OUTCOME = "OUTCOME";
+
+    public static String SIG_NAME = "ACTION";
+
+    public static final String ACTION_TYPE = "ActionType";
+    public static final String RATE = "Rate";
+    public static final String SWITCH_ID = "SwitchId";
+    public static final String TIME = "Time";
 
     private Action action = null;
-    private ListDataModel model = new ListDataModel();
+    private HashMap<String, ListDataModel> model;
     private AllActions allActions;
-    
+
     ConfigurationActionView configurationActionView = new ConfigurationActionView();
     InvestigationActionView investigationActionView = new InvestigationActionView();
-    
+
+    ElephantCheckerView elephantCheckerView = new ElephantCheckerView();
+    ProtocolCheckerView protocolCheckerView = new ProtocolCheckerView();
+    NewComerCheckerView newComerCheckerView = new NewComerCheckerView();
+
     /**
      * Creates new form ActionView
      */
     public ActionSpecView() {
+        this.model = new HashMap<>();
         initComponents();
         customInit();
     }
-    
+
     public ActionSpecView(AllActions allActions) {
+        this.model = new HashMap<>();
         this.allActions = allActions;
         initComponents();
         customInit();
     }
-    
+
     private void customInit() {
         handleButtons();
         //populate signature model
-        List<ListData> datas = new ArrayList<>();
-        datas.add(new ListData("Configuration Action", configurationActionView));
-        datas.add(new ListData("Investigation Action", investigationActionView));
-        model.setData(datas);
+//        List<ListData> datas = new ArrayList<>();
+//        datas.add(new ListData("Configuration Action", configurationActionView));
+//        datas.add(new ListData("Investigation Action", investigationActionView));
+//        model.setData(datas);
+        List<ActionListData> datas;
+
+        ListDataModel doModel = new ListDataModel();
+        datas = new ArrayList<>();
+        datas.add(new ActionListData(true, "Drop", null));
+        datas.add(new ActionListData(true, "Notify", null));
+        datas.add(new ActionListData(true, "Migrate", null));
+        datas.add(new ActionListData(true, "Drop and Notify", null));
+
+        datas.add(new ActionListData(true, "Check Elephant Flow", elephantCheckerView));
+        datas.add(new ActionListData(true, "Check ICMP/UDP", protocolCheckerView));
+        datas.add(new ActionListData(true, "Check New Comers", newComerCheckerView));
+        doModel.setData(datas);
+        model.put(DO, (ListDataModel) doModel);
+
+        ListDataModel onModel = new ListDataModel();
+        datas = new ArrayList<>();
+        datas.add(new ActionListData(true, "Flows", null));
+        datas.add(new ActionListData(true, "Packets", null));
+        onModel.setData(datas);
+        model.put(ON, (ListDataModel) onModel);
         
         addComboBoxItems();
     }
-    
+
     private void addComboBoxItems() {
+        ListDataModel listDataModel;
+        List<ActionListData> datas;
         DefaultComboBoxModel boxModel;
+
+        boxModel = (DefaultComboBoxModel) jcbDo.getModel();
+        listDataModel = model.get(DO);
+        datas = listDataModel.getData();
+        for (ActionListData data : datas) {
+            boxModel.addElement(data);
+        }
         
-        boxModel = (DefaultComboBoxModel) jcbAction.getModel();
-        for (ListData data : model.getData()) {
+        boxModel = (DefaultComboBoxModel) jcbOn.getModel();
+        listDataModel = model.get(ON);
+        datas = listDataModel.getData();
+        for (ActionListData data : datas) {
             boxModel.addElement(data);
         }
     }
-    
+
     public void loadData(Action e) {
         this.action = e;
         jtfActionName.setText(e.getName());
-        
-         for(int i=0; i<model.getSize(); i++){
-            GenericSignaturePanel gsp = (GenericSignaturePanel) model.getData().get(i).getData();
-            if(gsp!=null){
-                gsp.loadData(e.getSignatures().get(gsp.getSignatureId()));
+
+        for (Map.Entry<String, ListDataModel> entry : model.entrySet()) {
+            String key = entry.getKey();
+            ListDataModel value = entry.getValue();
+            
+            for (int i = 0; i < value.getSize(); i++) {
+                ListData data = (ListData) value.getData().get(i);
+                GenericSignaturePanel gsp = (GenericSignaturePanel) data.getData();
+                if (gsp != null) {
+                    gsp.loadData(e.getSignatures().get(gsp.getSignatureId()));
+                }
             }
         }
-        
     }
-    
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -101,7 +161,7 @@ public class ActionSpecView extends javax.swing.JPanel {
         jpActionParamHolder = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jcbAction = new javax.swing.JComboBox<>();
+        jcbDo = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
         jcbOn = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
@@ -113,7 +173,7 @@ public class ActionSpecView extends javax.swing.JPanel {
         jcbBy = new javax.swing.JComboBox<>();
         jcbUsing = new javax.swing.JComboBox<>();
         jcbFor = new javax.swing.JComboBox<>();
-        jTextField1 = new javax.swing.JTextField();
+        jtfOutCome = new javax.swing.JTextField();
 
         setPreferredSize(new java.awt.Dimension(710, 520));
 
@@ -199,10 +259,10 @@ public class ActionSpecView extends javax.swing.JPanel {
 
         jLabel2.setText("DO");
 
-        jcbAction.setModel(new DefaultComboBoxModel<String>());
-        jcbAction.addActionListener(new java.awt.event.ActionListener() {
+        jcbDo.setModel(new DefaultComboBoxModel<String>());
+        jcbDo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jcbActionActionPerformed(evt);
+                jcbDoActionPerformed(evt);
             }
         });
 
@@ -263,7 +323,7 @@ public class ActionSpecView extends javax.swing.JPanel {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jcbAction, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jcbDo, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -286,7 +346,7 @@ public class ActionSpecView extends javax.swing.JPanel {
                             .addComponent(jLabel8))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField1)
+                            .addComponent(jtfOutCome)
                             .addComponent(jcbFor, 0, 148, Short.MAX_VALUE))))
                 .addContainerGap(24, Short.MAX_VALUE))
         );
@@ -296,7 +356,7 @@ public class ActionSpecView extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jcbAction, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jcbDo, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -320,7 +380,7 @@ public class ActionSpecView extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtfOutCome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(224, Short.MAX_VALUE))
         );
 
@@ -358,22 +418,27 @@ public class ActionSpecView extends javax.swing.JPanel {
     private void jbtSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtSaveActionPerformed
         String name = jtfActionName.getText();
         System.out.println("Action name: " + name);
-        if(action == null){
+        if (action == null) {
             //creating new event
             action = new Action(name, Action.currentActionId);
             Action.currentActionId++;
         }
         action.setName(name);
-        for(int i=0; i<model.getSize(); i++){
-            GenericSignaturePanel gsp = (GenericSignaturePanel) model.getData().get(i).getData();
-            if(gsp!=null){
-                Signature sig = gsp.parseData();
-                if(sig!=null){
-                    action.getSignatures().put(sig.getId(), sig);
+        
+        for (Map.Entry<String, ListDataModel> entry : model.entrySet()) {
+            String key = entry.getKey();
+            ListDataModel value = entry.getValue();
+            for (int i = 0; i < value.getSize(); i++) {
+                ListData data = (ListData) value.getData().get(i);
+                GenericSignaturePanel gsp = (GenericSignaturePanel) data.getData();
+                if (gsp != null) {
+                    Signature sig = gsp.parseData();
+                    if (sig != null) {
+                        action.getSignatures().put(sig.getId(), sig);
+                    }
                 }
             }
         }
-
         allActions.actionUpdated(action);
     }//GEN-LAST:event_jbtSaveActionPerformed
 
@@ -381,23 +446,23 @@ public class ActionSpecView extends javax.swing.JPanel {
         if (action != null) {
             action.setIsDeleted(Boolean.TRUE);
             allActions.actionUpdated(action);
-        }
-        else {
+        } else {
             JOptionPane.showMessageDialog(this, "Cannot delete. Action not saved yet");
         }
     }//GEN-LAST:event_jbtDeleteActionPerformed
 
-    private void jcbActionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbActionActionPerformed
-        int index = jcbAction.getSelectedIndex();
-        ListData data = model.getData().get(index);
-        if(data.getData()!=null){
+    private void jcbDoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbDoActionPerformed
+        int index = jcbDo.getSelectedIndex();
+//        ListData data = (ListData) model.getData().get(index);
+        ActionListData data = (ActionListData) model.get(DO).getData().get(index);
+        if (data.getData() != null) {
             jpActionParamHolder.removeAll();
             jpActionParamHolder.setLayout(new BoxLayout(jpActionParamHolder, BoxLayout.X_AXIS));
-            jpActionParamHolder.add((JPanel)data.getData());
+            jpActionParamHolder.add((JPanel) data.getData());
             jpActionParamHolder.revalidate();
             jpActionParamHolder.repaint();
         }
-    }//GEN-LAST:event_jcbActionActionPerformed
+    }//GEN-LAST:event_jcbDoActionPerformed
 
     private void jcbOnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbOnActionPerformed
     }//GEN-LAST:event_jcbOnActionPerformed
@@ -434,17 +499,17 @@ public class ActionSpecView extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JSplitPane jSplitPane3;
     private javax.swing.JSplitPane jSplitPane4;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JButton jbtDelete;
     private javax.swing.JButton jbtSave;
-    private javax.swing.JComboBox<String> jcbAction;
     private javax.swing.JComboBox<String> jcbBy;
+    private javax.swing.JComboBox<String> jcbDo;
     private javax.swing.JComboBox<String> jcbFor;
     private javax.swing.JComboBox<String> jcbOf;
     private javax.swing.JComboBox<String> jcbOn;
     private javax.swing.JComboBox<String> jcbUsing;
     private javax.swing.JPanel jpActionParamHolder;
     private javax.swing.JTextField jtfActionName;
+    private javax.swing.JTextField jtfOutCome;
     // End of variables declaration//GEN-END:variables
 
     private void handleButtons() {
@@ -453,37 +518,117 @@ public class ActionSpecView extends javax.swing.JPanel {
         jtfActionName.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void changedUpdate(DocumentEvent e) {
-              changed();
+                changed();
             }
+
             @Override
             public void removeUpdate(DocumentEvent e) {
-              changed();
+                changed();
             }
+
             @Override
             public void insertUpdate(DocumentEvent e) {
-              changed();
+                changed();
             }
 
             public void changed() {
-               if (jtfActionName.getText().equals("")){
-                 jbtSave.setEnabled(false);
-                 jbtDelete.setEnabled(false);
-               }
-               else {
-                 jbtSave.setEnabled(true);
-                 jbtDelete.setEnabled(true);
-              }
+                if (jtfActionName.getText().equals("")) {
+                    jbtSave.setEnabled(false);
+                    jbtDelete.setEnabled(false);
+                } else {
+                    jbtSave.setEnabled(true);
+                    jbtDelete.setEnabled(true);
+                }
 
             }
         });
     }
 
-//    class CustomActions extends DefaultComboBoxModel{
+//    @Override
+//    public Signature parseData() {
+//        Signature signature = new Signature(SIG_NAME, Signature.ACTION_ID);
 //
-//        String [] items; 
-//        public CustomActions() {
-//            items = new String[] { "Item 1", "Item 2", "Item 3", "Item 4" };
-//            DefaultComboBoxModel defaultComboBoxModel = new DefaultComboBoxModel(items);
+//        HashMap<String, Object> fields = signature.getFields();
+//
+//        int index;
+//        ListDataModel dataModel = null;
+//        ActionListData actionListData;
+//
+//        index = jcbDo.getSelectedIndex();
+//        if (index != -1) {
+//            dataModel = model.get(DO);
+//            actionListData = (ActionListData) dataModel.getData().get(index);
+//            fields.put(DO, actionListData.getName());
+//
+//            if (actionListData.getData() instanceof NewComerCheckerView) {
+//                fields.put(SWITCH_ID, newComerCheckerView.getJtfSwitchId().getText());
+//                fields.put(TIME, newComerCheckerView.getJtfTime().getText());
+//            } else if (actionListData.getData() instanceof ElephantCheckerView) {
+//                fields.put(RATE, elephantCheckerView.getJtfRate().getText());
+//            } else {
+//                fields.put(RATE, protocolCheckerView.getJtfRate().getText());
+//            }
 //        }
+//
+//        index = jcbOn.getSelectedIndex();
+//        if (index != -1) {
+//            dataModel = model.get(ON);
+//            actionListData = (ActionListData) dataModel.getData().get(index);
+//            fields.put(ON, actionListData.getName());
+//        }
+//
+//        index = jcbOf.getSelectedIndex();
+//        if (index != -1) {
+//            dataModel = model.get(OF);
+//            actionListData = (ActionListData) dataModel.getData().get(index);
+//            fields.put(OF, actionListData.getName());
+//        }
+//
+//        index = jcbBy.getSelectedIndex();
+//        if (index != -1) {
+//            dataModel = model.get(BY);
+//            actionListData = (ActionListData) dataModel.getData().get(index);
+//            fields.put(BY, actionListData.getName());
+//        }
+//
+//        index = jcbUsing.getSelectedIndex();
+//        if (index != -1) {
+//            dataModel = model.get(USING);
+//            actionListData = (ActionListData) dataModel.getData().get(index);
+//            fields.put(USING, actionListData.getName());
+//        }
+//
+//        index = jcbFor.getSelectedIndex();
+//        if (index != -1) {
+//            dataModel = model.get(FOR);
+//            actionListData = (ActionListData) dataModel.getData().get(index);
+//            fields.put(FOR, actionListData.getName());
+//        }
+//
+//        fields.put(OUTCOME, jtfOutCome.getText());
+//        return signature;
+//    }
+//
+//    @Override
+//    public void loadData(Signature signature) {
+////        if (signature != null) {
+////            HashMap<String, Object> fields = signature.getFields();
+////            int index = jcbInvestigationActionType.getSelectedIndex();
+////            ListData data = (ListData) model.getData().get(index);
+////
+////            if (data.getData() instanceof NewComerCheckerView) {
+////                newComerCheckerView.getJtfSwitchId().setText((String) fields.get(SWITCH_ID));
+////                newComerCheckerView.getJtfTime().setText((String) fields.get(TIME));
+////            } else if (data.getData() instanceof ElephantCheckerView) {
+////                elephantCheckerView.getJtfRate().setText((String) fields.get(RATE));
+////            } else {
+////                protocolCheckerView.getJtfRate().setText((String) fields.get(RATE));
+////            }
+////        }
+//    }
+//
+//    @Override
+//    public Integer getSignatureId() {
+//        return Signature.ACTION_ID;
 //    }
 }

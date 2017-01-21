@@ -13,8 +13,11 @@ import javax.swing.AbstractListModel;
  *
  * @author Mazharul
  */
-public class ListDataModel extends AbstractListModel<String>{
-    private List<ListData> data =new ArrayList<>();
+public class ListDataModel<T> extends AbstractListModel<String>{
+    private List<T> data = new ArrayList<>();
+
+    public ListDataModel() {
+    }
     
     @Override
     public int getSize() {
@@ -23,16 +26,16 @@ public class ListDataModel extends AbstractListModel<String>{
 
     @Override
     public String getElementAt(int index) {
-        return data.get(index).getName();
+        return (String) data.get(index);
+//        return data.get(index).getName();
     }
 
-    public List<ListData> getData() {
+    public List<T> getData() {
         return data;
     }
 
-    public void setData(List<ListData> data) {
+    public void setData(List<T> data) {
         this.data = data;
     }
-    
-    
+
 }

@@ -5,13 +5,19 @@
  */
 package activesdngui.views.actionviews;
 
+import activesdngui.model.GenericSignaturePanel;
+import activesdngui.model.Signature;
+import java.util.HashMap;
 import javax.swing.JTextField;
 
 /**
  *
  * @author mislam7
  */
-public class ElephantCheckerView extends javax.swing.JPanel {
+public class ElephantCheckerView extends GenericSignaturePanel {
+    
+    public static String SIG_NAME = "Elephant Flow Checker";
+    public static final String RATE = "Rate";
 
     /**
      * Creates new form ElephantCheckerView
@@ -62,12 +68,35 @@ public class ElephantCheckerView extends javax.swing.JPanel {
     private javax.swing.JTextField jtfRate;
     // End of variables declaration//GEN-END:variables
 
-    public JTextField getJtfRate() {
-        return jtfRate;
+//    public JTextField getJtfRate() {
+//        return jtfRate;
+//    }
+//
+//    public void setJtfRate(JTextField jtfRate) {
+//        this.jtfRate = jtfRate;
+//    }
+
+    @Override
+    public Signature parseData() {
+        Signature signature = new Signature(SIG_NAME, Signature.ELEPHANT_FLOW_CHECKER_ID);
+
+        HashMap<String, Object> fields = signature.getFields();
+        fields.put(RATE, jtfRate.getText());
+        
+        return signature;
     }
 
-    public void setJtfRate(JTextField jtfRate) {
-        this.jtfRate = jtfRate;
+    @Override
+    public void loadData(Signature signature) {
+        if (signature != null) {
+            HashMap<String, Object> fields = signature.getFields();
+            jtfRate.setText((String) fields.get(RATE));
+        }
+    }
+
+    @Override
+    public Integer getSignatureId() {
+        return Signature.ELEPHANT_FLOW_CHECKER_ID;
     }
 
 }

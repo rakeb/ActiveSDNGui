@@ -62,14 +62,15 @@ public class ActionView extends javax.swing.JPanel {
     public void loadData(Action e) {
         this.action = e;
         jtfActionName.setText(e.getName());
-        
-         for(int i=0; i<model.getSize(); i++){
-            GenericSignaturePanel gsp = (GenericSignaturePanel) model.getData().get(i).getData();
-            if(gsp!=null){
+
+        for (int i = 0; i < model.getSize(); i++) {
+            ListData data = (ListData) model.getData().get(i);
+            GenericSignaturePanel gsp = (GenericSignaturePanel) data.getData();
+            if (gsp != null) {
                 gsp.loadData(e.getSignatures().get(gsp.getSignatureId()));
             }
         }
-        
+
     }
     
     
@@ -249,7 +250,8 @@ public class ActionView extends javax.swing.JPanel {
         }
         action.setName(name);
         for(int i=0; i<model.getSize(); i++){
-            GenericSignaturePanel gsp = (GenericSignaturePanel) model.getData().get(i).getData();
+            ListData data = (ListData) model.getData().get(i);
+            GenericSignaturePanel gsp = (GenericSignaturePanel) data.getData();
             if(gsp!=null){
                 Signature sig = gsp.parseData();
                 if(sig!=null){
@@ -273,7 +275,7 @@ public class ActionView extends javax.swing.JPanel {
 
     private void jcbActionTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbActionTypeActionPerformed
         int index = jcbActionType.getSelectedIndex();
-        ListData data = model.getData().get(index);
+        ListData data = (ListData) model.getData().get(index);
         if(data.getData()!=null){
             jpActionParamHolder.removeAll();
             jpActionParamHolder.setLayout(new BoxLayout(jpActionParamHolder, BoxLayout.X_AXIS));

@@ -80,7 +80,6 @@ public class AllEvent extends javax.swing.JPanel {
         DefaultListModel nmodel = (DefaultListModel) jlEventList.getModel();
         nmodel.removeAllElements();
         List<ListData> listDatasToBeAdded = model.getData();
-        
         for (ListData listData : listDatasToBeAdded) {
             String name = listData.getName();
             System.out.println("listdata name: " + name);
@@ -97,7 +96,7 @@ public class AllEvent extends javax.swing.JPanel {
             Utilities.pirntArray(indexs);
             int index = jlEventList.getSelectedIndex();
             if (index != -1) {
-                ListData data = model.getData().get(index);
+                ListData data = (ListData) model.getData().get(index);
 
                 EventView eventView = new EventView(AllEvent.this);
                 eventView.loadData((Event) data.getData());
@@ -294,7 +293,9 @@ public class AllEvent extends javax.swing.JPanel {
         List<Event> eventList = new ArrayList<>();
 
         for (int index : indexs) {
-            eventList.add((Event) model.getData().get(index).getData());
+            ListData listData = (ListData) model.getData().get(index);
+            Event event = (Event) listData.getData();
+            eventList.add(event);
         }
 
         controller.setEvents(eventList);

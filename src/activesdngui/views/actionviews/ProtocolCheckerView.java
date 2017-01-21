@@ -5,14 +5,20 @@
  */
 package activesdngui.views.actionviews;
 
+import activesdngui.model.GenericSignaturePanel;
+import activesdngui.model.Signature;
+import java.util.HashMap;
 import javax.swing.JTextField;
 
 /**
  *
  * @author mislam7
  */
-public class ProtocolCheckerView extends javax.swing.JPanel {
+public class ProtocolCheckerView extends GenericSignaturePanel {
 
+    public static final String SIG_NAME = "UDP ICMP Checker";
+    public static final String RATE = "Rate";
+    
     /**
      * Creates new form ElephantCheckerView
      */
@@ -68,6 +74,29 @@ public class ProtocolCheckerView extends javax.swing.JPanel {
 
     public void setJtfRate(JTextField jtfRate) {
         this.jtfRate = jtfRate;
+    }
+
+    @Override
+    public Signature parseData() {
+        Signature signature = new Signature(SIG_NAME, Signature.UDP_ICMP_CHECKER_ID);
+
+        HashMap<String, Object> fields = signature.getFields();
+        fields.put(RATE, jtfRate.getText());
+        
+        return signature;
+    }
+
+    @Override
+    public void loadData(Signature signature) {
+        if (signature != null) {
+            HashMap<String, Object> fields = signature.getFields();
+            jtfRate.setText((String) fields.get(RATE));
+        }
+    }
+
+    @Override
+    public Integer getSignatureId() {
+        return Signature.UDP_ICMP_CHECKER_ID;
     }
 
 }

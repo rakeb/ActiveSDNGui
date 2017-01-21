@@ -13,15 +13,31 @@ import java.util.HashMap;
  */
 public class Action {
     
-    public enum ActionList {
-        DROP, NOTIFY, DROPANDNOTIFY, MIGRATE
-    }
+    public static final String DO = "DO";
+    public static final String ON = "ON";
+    public static final String OF = "OF";
+    public static final String BY = "BY";
+    public static final String USING = "USING";
+    public static final String FOR = "FOR";
+    public static final String OUTCOME = "OUTCOME";
     public static final String ACTION = "ACTION";
     
+    public enum ActionType {
+        DROP, 
+        NOTIFY, 
+        DROPANDNOTIFY, 
+        MIGRATE, 
+        ELEPHANTFLOWCHECKER, 
+        NEWCOMERCHECKER,
+        UDPICMPCHECKER
+    }
+    
+    public static Integer currentActionId = 0;
+
     private String name;
     private Integer id;
-    public static Integer currentActionId = 0;
     private Boolean isDeleted = false;
+    private ActionType actionType;
     private HashMap<Integer, Signature> signatures = new HashMap<>();
 
     public Action() {
@@ -49,14 +65,6 @@ public class Action {
         this.id = id;
     }
 
-    public HashMap<Integer, Signature> getSignatures() {
-        return signatures;
-    }
-
-    public void setSignatures(HashMap<Integer, Signature> signatures) {
-        this.signatures = signatures;
-    }
-
     public Boolean getIsDeleted() {
         return isDeleted;
     }
@@ -64,5 +72,20 @@ public class Action {
     public void setIsDeleted(Boolean isDeleted) {
         this.isDeleted = isDeleted;
     }
-    
+
+    public ActionType getActionType() {
+        return actionType;
+    }
+
+    public void setActionType(ActionType actionType) {
+        this.actionType = actionType;
+    }
+
+    public HashMap<Integer, Signature> getSignatures() {
+        return signatures;
+    }
+
+    public void setSignatures(HashMap<Integer, Signature> signatures) {
+        this.signatures = signatures;
+    }
 }

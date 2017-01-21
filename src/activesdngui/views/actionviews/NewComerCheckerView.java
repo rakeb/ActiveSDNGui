@@ -5,14 +5,22 @@
  */
 package activesdngui.views.actionviews;
 
+import activesdngui.model.GenericSignaturePanel;
+import activesdngui.model.Signature;
+import static activesdngui.views.actionviews.ElephantCheckerView.RATE;
+import static activesdngui.views.actionviews.ElephantCheckerView.SIG_NAME;
+import java.util.HashMap;
 import javax.swing.JTextField;
 
 /**
  *
  * @author mislam7
  */
-public class NewComerCheckerView extends javax.swing.JPanel {
+public class NewComerCheckerView extends GenericSignaturePanel{
 
+    public static final String SIG_NAME = "New Comer Checker";
+    public static final String TIME = "Time";
+    public static final String SWITCH_ID = "Switch ID";
     /**
      * Creates new form ElephantCheckerView
      */
@@ -90,6 +98,31 @@ public class NewComerCheckerView extends javax.swing.JPanel {
 
     public void setJtfTime(JTextField jtfTime) {
         this.jtfTime = jtfTime;
+    }
+
+    @Override
+    public Signature parseData() {
+        Signature signature = new Signature(SIG_NAME, Signature.NEW_COMER_CHECKER_ID);
+
+        HashMap<String, Object> fields = signature.getFields();
+        fields.put(TIME, jtfTime.getText());
+        fields.put(SWITCH_ID, jtfSwitchId.getText());
+        
+        return signature;
+    }
+
+    @Override
+    public void loadData(Signature signature) {
+        if (signature != null) {
+            HashMap<String, Object> fields = signature.getFields();
+            jtfSwitchId.setText((String) fields.get(SWITCH_ID));
+            jtfTime.setText((String) fields.get(TIME));
+        }
+    }
+
+    @Override
+    public Integer getSignatureId() {
+        return Signature.NEW_COMER_CHECKER_ID;
     }
     
     
