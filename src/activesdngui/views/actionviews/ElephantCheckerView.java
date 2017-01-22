@@ -9,6 +9,7 @@ import activesdngui.model.GenericSignaturePanel;
 import activesdngui.model.Signature;
 import java.util.HashMap;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -24,6 +25,14 @@ public class ElephantCheckerView extends GenericSignaturePanel {
      */
     public ElephantCheckerView() {
         initComponents();
+        customInit();
+    }
+    private void customInit() {
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.addRow(new Object[]{"Id"});
+        model.addRow(new Object[]{"Threshold Rate"});
+        model.addRow(new Object[]{"Switch"});
+        jTable1.setModel(model);
     }
 
     /**
@@ -35,37 +44,43 @@ public class ElephantCheckerView extends GenericSignaturePanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jtfRate = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
-        jLabel1.setText("Rate (in %)");
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Parameter", "Value", "Comments(Optional)"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, true, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(jtfRate, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(176, Short.MAX_VALUE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jtfRate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(253, Short.MAX_VALUE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JTextField jtfRate;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 
 //    public JTextField getJtfRate() {
@@ -81,7 +96,7 @@ public class ElephantCheckerView extends GenericSignaturePanel {
         Signature signature = new Signature(SIG_NAME, Signature.ELEPHANT_FLOW_CHECKER_ID);
 
         HashMap<String, Object> fields = signature.getFields();
-        fields.put(RATE, jtfRate.getText());
+//        fields.put(RATE, jtfRate.getText());
         
         return signature;
     }
@@ -90,7 +105,7 @@ public class ElephantCheckerView extends GenericSignaturePanel {
     public void loadData(Signature signature) {
         if (signature != null) {
             HashMap<String, Object> fields = signature.getFields();
-            jtfRate.setText((String) fields.get(RATE));
+//            jtfRate.setText((String) fields.get(RATE));
         }
     }
 

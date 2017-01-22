@@ -77,13 +77,15 @@ public class ActionSpecView extends JPanel {
 
         ListDataModel doModel = new ListDataModel();
         datas = new ArrayList<>();
-        datas.add(new ActionListData(true, "Drop", null));
-        datas.add(new ActionListData(true, "Notify", null));
-        datas.add(new ActionListData(true, "Migrate", null));
-        datas.add(new ActionListData(true, "Drop and Notify", null));
-        datas.add(new ActionListData(true, "Check Elephant Flow", elephantCheckerView));
-        datas.add(new ActionListData(true, "Check ICMP/UDP", protocolCheckerView));
-        datas.add(new ActionListData(true, "Check New Comers", newComerCheckerView));
+        datas.add(new ActionListData(true, "Configuration Action", configurationActionView));
+        datas.add(new ActionListData(true, "Investigation Action", investigationActionView));
+//        datas.add(new ActionListData(true, "Drop", null));
+//        datas.add(new ActionListData(true, "Notify", null));
+//        datas.add(new ActionListData(true, "Migrate", null));
+//        datas.add(new ActionListData(true, "Drop and Notify", null));
+//        datas.add(new ActionListData(true, "Check Elephant Flow", elephantCheckerView));
+//        datas.add(new ActionListData(true, "Check ICMP/UDP", protocolCheckerView));
+//        datas.add(new ActionListData(true, "Check New Comers", newComerCheckerView));
         doModel.setData(datas);
         model.put(DO, (ListDataModel) doModel);
 
