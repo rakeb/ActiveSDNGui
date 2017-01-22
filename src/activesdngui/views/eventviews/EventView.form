@@ -21,7 +21,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jSplitPane3" alignment="0" max="32767" attributes="0"/>
+          <Component id="jSplitPane3" alignment="0" pref="514" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -57,7 +57,7 @@
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jtfEventName" min="-2" pref="233" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="373" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="177" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -93,14 +93,14 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jSplitPane4" alignment="1" max="32767" attributes="0"/>
+                  <Component id="jSplitPane4" alignment="1" pref="510" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jSplitPane4" max="32767" attributes="0"/>
+                      <Component id="jSplitPane4" pref="303" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -124,7 +124,7 @@
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace min="0" pref="421" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="184" max="32767" attributes="0"/>
                               <Component id="jbtSave" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jbtDelete" min="-2" max="-2" attributes="0"/>
@@ -176,7 +176,7 @@
                         </DimensionLayout>
                         <DimensionLayout dim="1">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <EmptySpace min="0" pref="584" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="258" max="32767" attributes="0"/>
                           </Group>
                         </DimensionLayout>
                       </Layout>
@@ -210,7 +210,7 @@
                               <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="jcbEventType" min="-2" pref="27" max="-2" attributes="0"/>
-                              <EmptySpace pref="564" max="32767" attributes="0"/>
+                              <EmptySpace pref="238" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>

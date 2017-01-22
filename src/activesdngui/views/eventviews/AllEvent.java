@@ -125,15 +125,8 @@ public class AllEvent extends javax.swing.JPanel {
         jbCreateEvent = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jlEventList = new javax.swing.JList<>();
-        jbCreateEventExpression = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        jSplitPane2 = new javax.swing.JSplitPane();
-        jpPattern = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jtfWindow = new javax.swing.JTextField();
-        jtfCount = new javax.swing.JTextField();
         jpEventViewHolder = new javax.swing.JPanel();
 
         jSplitPane1.setDividerLocation(250);
@@ -155,12 +148,7 @@ public class AllEvent extends javax.swing.JPanel {
         jlEventList.setModel(new DefaultListModel());
         jScrollPane1.setViewportView(jlEventList);
 
-        jbCreateEventExpression.setText("Create Event Expression");
-        jbCreateEventExpression.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbCreateEventExpressionActionPerformed(evt);
-            }
-        });
+        jButton1.setText("Create Event Expression");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -169,95 +157,46 @@ public class AllEvent extends javax.swing.JPanel {
             .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jbCreateEventExpression)
-                        .addGap(0, 41, Short.MAX_VALUE)))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jButton1)
+                .addGap(0, 12, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 465, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jbCreateEventExpression)
-                .addContainerGap())
+                .addComponent(jButton1))
         );
 
         jSplitPane1.setLeftComponent(jPanel1);
-
-        jSplitPane2.setDividerLocation(750);
-
-        jLabel2.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
-        jLabel2.setText("Pattern");
-
-        jLabel3.setText("Window");
-
-        jLabel4.setText("Count");
-
-        javax.swing.GroupLayout jpPatternLayout = new javax.swing.GroupLayout(jpPattern);
-        jpPattern.setLayout(jpPatternLayout);
-        jpPatternLayout.setHorizontalGroup(
-            jpPatternLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpPatternLayout.createSequentialGroup()
-                .addGap(14, 65, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addGap(81, 81, 81))
-            .addGroup(jpPatternLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jpPatternLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4))
-                .addGap(18, 18, 18)
-                .addGroup(jpPatternLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jtfCount, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jtfWindow, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jpPatternLayout.setVerticalGroup(
-            jpPatternLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpPatternLayout.createSequentialGroup()
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(1, 1, 1)
-                .addGroup(jpPatternLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtfWindow, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jpPatternLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtfCount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addContainerGap(458, Short.MAX_VALUE))
-        );
-
-        jSplitPane2.setRightComponent(jpPattern);
 
         javax.swing.GroupLayout jpEventViewHolderLayout = new javax.swing.GroupLayout(jpEventViewHolder);
         jpEventViewHolder.setLayout(jpEventViewHolderLayout);
         jpEventViewHolderLayout.setHorizontalGroup(
             jpEventViewHolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 748, Short.MAX_VALUE)
+            .addGap(0, 266, Short.MAX_VALUE)
         );
         jpEventViewHolderLayout.setVerticalGroup(
             jpEventViewHolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 532, Short.MAX_VALUE)
+            .addGap(0, 266, Short.MAX_VALUE)
         );
-
-        jSplitPane2.setLeftComponent(jpEventViewHolder);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane2)
+            .addComponent(jpEventViewHolder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jSplitPane2))
+                .addComponent(jpEventViewHolder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jSplitPane1.setRightComponent(jPanel2);
@@ -266,7 +205,7 @@ public class AllEvent extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane1)
+            .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 486, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -280,33 +219,11 @@ public class AllEvent extends javax.swing.JPanel {
         customInit();
     }//GEN-LAST:event_jbCreateEventActionPerformed
 
-    private void jbCreateEventExpressionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCreateEventExpressionActionPerformed
-        //pattern
-        Pattern pattern = new Pattern();
-        HashMap<String, Object> fields = pattern.getFields();
-        fields.put(Pattern.WINDOW, jtfWindow.getText());
-        fields.put(Pattern.COUNT, jtfCount.getText());
-
-        //events
-        int[] indexs = jlEventList.getSelectedIndices();
-        Utilities.pirntArray(indexs);
-        List<Event> eventList = new ArrayList<>();
-
-        for (int index : indexs) {
-            ListData listData = (ListData) model.getData().get(index);
-            Event event = (Event) listData.getData();
-            eventList.add(event);
-        }
-
-        controller.setEvents(eventList);
-        controller.setPattern(pattern);
-        Utilities.printController(controller);
-    }//GEN-LAST:event_jbCreateEventExpressionActionPerformed
-
 
 
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -314,10 +231,8 @@ public class AllEvent extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSplitPane jSplitPane1;
-    private javax.swing.JSplitPane jSplitPane2;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JButton jbCreateEvent;
-    private javax.swing.JButton jbCreateEventExpression;
     private javax.swing.JList<String> jlEventList;
     private ListDataModel model;
     private javax.swing.JPanel jpEventViewHolder;
