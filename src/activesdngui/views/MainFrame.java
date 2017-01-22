@@ -38,10 +38,10 @@ public class MainFrame extends javax.swing.JFrame {
         allActions = new AllActions();
         policyBuilder = new PolicyBuilderView();
         about = new AboutView();
-        jtpMainTabbedPan.addTab("Event", allEvtPanel);
-        jtpMainTabbedPan.addTab("Action", allActions);
+        jtpMainTabbedPan.addTab("Event Specs", allEvtPanel);
+        jtpMainTabbedPan.addTab("Course of Action", allActions);
 //        jtpMainTabbedPan.addTab("Course Of Action", courseOfAction);
-        jtpMainTabbedPan.addTab("Policy Bulider", policyBuilder);
+        jtpMainTabbedPan.addTab("CLIPS Rule", policyBuilder);
         jtpMainTabbedPan.addTab("About", about);
         
         //sent controller to everyone
@@ -113,6 +113,7 @@ public class MainFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
             mainFrame = new MainFrame();
+            mainFrame.setTitle("CLIPS Policy Builder");
             mainFrame.setVisible(true);
         });
     }

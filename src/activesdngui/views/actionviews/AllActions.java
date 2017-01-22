@@ -117,6 +117,11 @@ public class AllActions extends javax.swing.JPanel {
         jbCreateAction.setFocusable(false);
         jbCreateAction.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jbCreateAction.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jbCreateAction.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbCreateActionActionPerformed(evt);
+            }
+        });
         jToolBar1.add(jbCreateAction);
 
         model = new ListDataModel();
@@ -168,6 +173,10 @@ public class AllActions extends javax.swing.JPanel {
             .addComponent(jSplitPane1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jbCreateActionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCreateActionActionPerformed
+        customInit();
+    }//GEN-LAST:event_jbCreateActionActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

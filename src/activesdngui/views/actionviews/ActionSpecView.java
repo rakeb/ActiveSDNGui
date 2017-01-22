@@ -72,11 +72,7 @@ public class ActionSpecView extends JPanel {
 
     private void customInit() {
         handleButtons();
-        //populate signature model
-//        List<ListData> datas = new ArrayList<>();
-//        datas.add(new ListData("Configuration Action", configurationActionView));
-//        datas.add(new ListData("Investigation Action", investigationActionView));
-//        model.setData(datas);
+
         List<ActionListData> datas;
 
         ListDataModel doModel = new ListDataModel();
@@ -85,7 +81,6 @@ public class ActionSpecView extends JPanel {
         datas.add(new ActionListData(true, "Notify", null));
         datas.add(new ActionListData(true, "Migrate", null));
         datas.add(new ActionListData(true, "Drop and Notify", null));
-
         datas.add(new ActionListData(true, "Check Elephant Flow", elephantCheckerView));
         datas.add(new ActionListData(true, "Check ICMP/UDP", protocolCheckerView));
         datas.add(new ActionListData(true, "Check New Comers", newComerCheckerView));
@@ -98,6 +93,34 @@ public class ActionSpecView extends JPanel {
         datas.add(new ActionListData(true, "Packets", null));
         onModel.setData(datas);
         model.put(ON, (ListDataModel) onModel);
+
+        ListDataModel byModel = new ListDataModel();
+        datas = new ArrayList<>();
+        datas.add(new ActionListData(true, "IDS", null));
+        datas.add(new ActionListData(true, "FW", null));
+        datas.add(new ActionListData(true, "Switch", null));
+        byModel.setData(datas);
+        model.put(BY, (ListDataModel) byModel);
+        
+        ListDataModel ofModel = new ListDataModel();
+        datas = new ArrayList<>();
+        datas.add(new ActionListData(true, "Packet Header", null));
+        datas.add(new ActionListData(true, "Packets", null));
+        ofModel.setData(datas);
+        model.put(OF, (ListDataModel) ofModel);
+        
+        ListDataModel ousingModel = new ListDataModel();
+        datas = new ArrayList<>();
+        datas.add(new ActionListData(true, "Rate", null));
+        datas.add(new ActionListData(true, "Protocol", null));
+        ousingModel.setData(datas);
+        model.put(USING, (ListDataModel) ousingModel);
+        
+        ListDataModel forModel = new ListDataModel();
+        datas = new ArrayList<>();
+        datas.add(new ActionListData(true, "Detect", null));
+        forModel.setData(datas);
+        model.put(FOR, (ListDataModel) forModel);
         
         addComboBoxItems();
     }
@@ -113,9 +136,37 @@ public class ActionSpecView extends JPanel {
         for (ActionListData data : datas) {
             boxModel.addElement(data);
         }
-        
+
         boxModel = (DefaultComboBoxModel) jcbOn.getModel();
         listDataModel = model.get(ON);
+        datas = listDataModel.getData();
+        for (ActionListData data : datas) {
+            boxModel.addElement(data);
+        }
+        
+        boxModel = (DefaultComboBoxModel) jcbOf.getModel();
+        listDataModel = model.get(OF);
+        datas = listDataModel.getData();
+        for (ActionListData data : datas) {
+            boxModel.addElement(data);
+        }
+        
+        boxModel = (DefaultComboBoxModel) jcbBy.getModel();
+        listDataModel = model.get(BY);
+        datas = listDataModel.getData();
+        for (ActionListData data : datas) {
+            boxModel.addElement(data);
+        }
+        
+        boxModel = (DefaultComboBoxModel) jcbUsing.getModel();
+        listDataModel = model.get(USING);
+        datas = listDataModel.getData();
+        for (ActionListData data : datas) {
+            boxModel.addElement(data);
+        }
+        
+        boxModel = (DefaultComboBoxModel) jcbFor.getModel();
+        listDataModel = model.get(FOR);
         datas = listDataModel.getData();
         for (ActionListData data : datas) {
             boxModel.addElement(data);
@@ -129,7 +180,7 @@ public class ActionSpecView extends JPanel {
         for (Map.Entry<String, ListDataModel> entry : model.entrySet()) {
             String key = entry.getKey();
             ListDataModel value = entry.getValue();
-            
+
             for (int i = 0; i < value.getSize(); i++) {
                 ListData data = (ListData) value.getData().get(i);
                 GenericSignaturePanel gsp = (GenericSignaturePanel) data.getData();
@@ -257,7 +308,7 @@ public class ActionSpecView extends JPanel {
 
         jSplitPane4.setRightComponent(jPanel8);
 
-        jLabel2.setText("DO");
+        jLabel2.setText("Action");
 
         jcbDo.setModel(new DefaultComboBoxModel<String>());
         jcbDo.addActionListener(new java.awt.event.ActionListener() {
@@ -322,7 +373,7 @@ public class ActionSpecView extends JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                         .addComponent(jcbDo, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel3)
@@ -338,7 +389,7 @@ public class ActionSpecView extends JPanel {
                         .addComponent(jcbBy, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jcbUsing, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -424,21 +475,34 @@ public class ActionSpecView extends JPanel {
             Action.currentActionId++;
         }
         action.setName(name);
-        
+
         for (Map.Entry<String, ListDataModel> entry : model.entrySet()) {
             String key = entry.getKey();
             ListDataModel value = entry.getValue();
-            for (int i = 0; i < value.getSize(); i++) {
-                ListData data = (ListData) value.getData().get(i);
-                GenericSignaturePanel gsp = (GenericSignaturePanel) data.getData();
-                if (gsp != null) {
-                    Signature sig = gsp.parseData();
-                    if (sig != null) {
-                        action.getSignatures().put(sig.getId(), sig);
-                    }
+            ListData data = (ListData) value.getData().get(getSelectedIndex(key));
+            GenericSignaturePanel gsp = (GenericSignaturePanel) data.getData();
+            if (gsp != null) {
+                Signature sig = gsp.parseData();
+                if (sig != null) {
+                    action.getSignatures().put(sig.getId(), sig);
                 }
             }
         }
+
+//        for (Map.Entry<String, ListDataModel> entry : model.entrySet()) {
+//            String key = entry.getKey();
+//            ListDataModel value = entry.getValue();
+//            for (int i = 0; i < value.getSize(); i++) {
+//                ListData data = (ListData) value.getData().get(i);
+//                GenericSignaturePanel gsp = (GenericSignaturePanel) data.getData();
+//                if (gsp != null) {
+//                    Signature sig = gsp.parseData();
+//                    if (sig != null) {
+//                        action.getSignatures().put(sig.getId(), sig);
+//                    }
+//                }
+//            }
+//        }
         allActions.actionUpdated(action);
     }//GEN-LAST:event_jbtSaveActionPerformed
 
@@ -544,91 +608,23 @@ public class ActionSpecView extends JPanel {
         });
     }
 
-//    @Override
-//    public Signature parseData() {
-//        Signature signature = new Signature(SIG_NAME, Signature.ACTION_ID);
-//
-//        HashMap<String, Object> fields = signature.getFields();
-//
-//        int index;
-//        ListDataModel dataModel = null;
-//        ActionListData actionListData;
-//
-//        index = jcbDo.getSelectedIndex();
-//        if (index != -1) {
-//            dataModel = model.get(DO);
-//            actionListData = (ActionListData) dataModel.getData().get(index);
-//            fields.put(DO, actionListData.getName());
-//
-//            if (actionListData.getData() instanceof NewComerCheckerView) {
-//                fields.put(SWITCH_ID, newComerCheckerView.getJtfSwitchId().getText());
-//                fields.put(TIME, newComerCheckerView.getJtfTime().getText());
-//            } else if (actionListData.getData() instanceof ElephantCheckerView) {
-//                fields.put(RATE, elephantCheckerView.getJtfRate().getText());
-//            } else {
-//                fields.put(RATE, protocolCheckerView.getJtfRate().getText());
-//            }
-//        }
-//
-//        index = jcbOn.getSelectedIndex();
-//        if (index != -1) {
-//            dataModel = model.get(ON);
-//            actionListData = (ActionListData) dataModel.getData().get(index);
-//            fields.put(ON, actionListData.getName());
-//        }
-//
-//        index = jcbOf.getSelectedIndex();
-//        if (index != -1) {
-//            dataModel = model.get(OF);
-//            actionListData = (ActionListData) dataModel.getData().get(index);
-//            fields.put(OF, actionListData.getName());
-//        }
-//
-//        index = jcbBy.getSelectedIndex();
-//        if (index != -1) {
-//            dataModel = model.get(BY);
-//            actionListData = (ActionListData) dataModel.getData().get(index);
-//            fields.put(BY, actionListData.getName());
-//        }
-//
-//        index = jcbUsing.getSelectedIndex();
-//        if (index != -1) {
-//            dataModel = model.get(USING);
-//            actionListData = (ActionListData) dataModel.getData().get(index);
-//            fields.put(USING, actionListData.getName());
-//        }
-//
-//        index = jcbFor.getSelectedIndex();
-//        if (index != -1) {
-//            dataModel = model.get(FOR);
-//            actionListData = (ActionListData) dataModel.getData().get(index);
-//            fields.put(FOR, actionListData.getName());
-//        }
-//
-//        fields.put(OUTCOME, jtfOutCome.getText());
-//        return signature;
-//    }
-//
-//    @Override
-//    public void loadData(Signature signature) {
-////        if (signature != null) {
-////            HashMap<String, Object> fields = signature.getFields();
-////            int index = jcbInvestigationActionType.getSelectedIndex();
-////            ListData data = (ListData) model.getData().get(index);
-////
-////            if (data.getData() instanceof NewComerCheckerView) {
-////                newComerCheckerView.getJtfSwitchId().setText((String) fields.get(SWITCH_ID));
-////                newComerCheckerView.getJtfTime().setText((String) fields.get(TIME));
-////            } else if (data.getData() instanceof ElephantCheckerView) {
-////                elephantCheckerView.getJtfRate().setText((String) fields.get(RATE));
-////            } else {
-////                protocolCheckerView.getJtfRate().setText((String) fields.get(RATE));
-////            }
-////        }
-//    }
-//
-//    @Override
-//    public Integer getSignatureId() {
-//        return Signature.ACTION_ID;
-//    }
+    private int getSelectedIndex(String key) {
+        switch (key) {
+            case DO:
+                return jcbDo.getSelectedIndex();
+            case ON:
+                return jcbOn.getSelectedIndex();
+            case OF:
+                return jcbOf.getSelectedIndex();
+            case BY:
+                return jcbBy.getSelectedIndex();
+            case USING:
+                return jcbUsing.getSelectedIndex();
+            case FOR:
+                return jcbFor.getSelectedIndex();
+            default:
+                return -1;
+
+        }
+    }
 }
