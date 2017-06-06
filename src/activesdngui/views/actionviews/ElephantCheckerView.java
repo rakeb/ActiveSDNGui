@@ -29,9 +29,9 @@ public class ElephantCheckerView extends GenericSignaturePanel {
     }
     private void customInit() {
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-        model.addRow(new Object[]{"Id"});
+//        model.addRow(new Object[]{"Id"});
         model.addRow(new Object[]{"Threshold Rate"});
-        model.addRow(new Object[]{"Switch"});
+//        model.addRow(new Object[]{"Switch"});
         jTable1.setModel(model);
     }
 

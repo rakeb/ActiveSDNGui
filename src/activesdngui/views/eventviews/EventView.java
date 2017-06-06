@@ -56,9 +56,9 @@ public class EventView extends javax.swing.JPanel {
         handleButtons();
         //populate signature model
         List<ListData> datas = new ArrayList<>();
-        datas.add(new ListData("IGMP", igmpView));
-        datas.add(new ListData("TCP", tcpView));
         datas.add(new ListData("IP", ipView));
+        datas.add(new ListData("TCP", tcpView));
+        datas.add(new ListData("IGMP", igmpView));
         datas.add(new ListData("ARP", arpView));
         datas.add(new ListData("ICMP", icmpView));
         model.setData(datas);

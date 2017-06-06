@@ -6,8 +6,16 @@
 package activesdngui.views.policybuilder;
 
 import activesdngui.model.Operator;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
+import javax.swing.JTree;
+import javax.swing.ListModel;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.TreePath;
 
 /**
  *
@@ -20,6 +28,35 @@ public class PolicyBuilderView extends javax.swing.JPanel {
      */
     public PolicyBuilderView() {
         initComponents();
+        customInit();
+    }
+
+    private void customInit() {
+        DefaultListModel listModel = new DefaultListModel();
+        listModel.addElement("Check Elephant Flow");
+        listModel.addElement("Check UDP/ICMP Flow");
+        listModel.addElement("Check New Comer");
+        listModel.addElement("Find White Listed");
+        listModel.addElement("Forward LPQ");
+        listModel.addElement("Block");
+        listModel.addElement("Limit");
+        listModel.addElement("Replicate");
+        listModel.addElement("Rerout");
+        listModel.addElement("Migrate");
+        jlCoaList.setModel(listModel);
+
+        jlCoaList.addMouseListener(new CustomListSelectionListnerOne());
+        
+        listModel = new DefaultListModel();
+        listModel.addElement("TCP Event");
+        listModel.addElement("IP Event");
+        listModel.addElement("ICMP Event");
+        listModel.addElement("TCP/IP Event");
+        listModel.addElement("IGMP Event");
+        listModel.addElement("Link Flooded Event");
+        jlEvenSpecList.setModel(listModel);
+
+        jlEvenSpecList.addMouseListener(new CustomListSelectionListnerTwo());
     }
 
     /**
@@ -38,28 +75,36 @@ public class PolicyBuilderView extends javax.swing.JPanel {
         jList1 = new javax.swing.JList<>();
         jToolBar1 = new javax.swing.JToolBar();
         jButton1 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jSplitPane3 = new javax.swing.JSplitPane();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jList2 = new javax.swing.JList<>();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
         jSplitPane4 = new javax.swing.JSplitPane();
-        jPanel3 = new javax.swing.JPanel();
+        jPanel5 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jlEvenSpecList = new javax.swing.JList<>();
+        jPanel6 = new javax.swing.JPanel();
+        jSplitPane5 = new javax.swing.JSplitPane();
+        jPanel7 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jlCoaList = new javax.swing.JList<>();
+        jPanel8 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         trvCoA = new javax.swing.JTree();
         jToolBar2 = new javax.swing.JToolBar();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        jList3 = new javax.swing.JList<>();
-        jButton3 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
+        jbIf = new javax.swing.JButton();
+        jbElse = new javax.swing.JButton();
+        jbDeleteNode = new javax.swing.JButton();
 
-        jSplitPane2.setDividerLocation(250);
+        jSplitPane2.setDividerLocation(170);
 
         jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "DDoS Mitigation"};
+            String[] strings = { "DDoS Mitigation Policy", "ACD by Diversity Policy", "Account Enumeration Policy"};
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
@@ -67,42 +112,131 @@ public class PolicyBuilderView extends javax.swing.JPanel {
 
         jToolBar1.setRollover(true);
 
-        jButton1.setText("Create New Policy");
+        jButton1.setText("New Policy");
         jButton1.setFocusable(false);
         jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jToolBar1.add(jButton1);
 
+        jButton3.setText("Save");
+        jButton3.setFocusable(false);
+        jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(jButton3);
+
+        jButton7.setText("Delete");
+        jButton7.setFocusable(false);
+        jButton7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton7.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(jButton7);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
-            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 492, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 363, Short.MAX_VALUE))
         );
 
         jSplitPane2.setLeftComponent(jPanel1);
 
+        jSplitPane3.setDividerLocation(30);
         jSplitPane3.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
 
-        jList2.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "TCP Event", "ICMP Event", "IP Event", "IGMP Event", "Item 5" };
+        jLabel1.setText("Rule Name");
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(137, Short.MAX_VALUE))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jSplitPane3.setLeftComponent(jPanel4);
+
+        jSplitPane4.setDividerLocation(100);
+
+        jLabel2.setText("Event Spec");
+
+        jlEvenSpecList.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "TCP Event", "IP Event", "ICMP Event", "IGMP Event", "ARP Event" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane2.setViewportView(jList2);
+        jScrollPane2.setViewportView(jlEvenSpecList);
 
-        jSplitPane3.setTopComponent(jScrollPane2);
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2)
+                .addContainerGap(25, Short.MAX_VALUE))
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 317, Short.MAX_VALUE))
+        );
 
-        jSplitPane4.setDividerLocation(250);
+        jSplitPane4.setLeftComponent(jPanel5);
+
+        jSplitPane5.setDividerLocation(100);
+
+        jLabel3.setText("CoA");
+
+        jlCoaList.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Check Elephant Flows", "Check UDP/ICMP Flows", "Check New Comers"};
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane4.setViewportView(jlCoaList);
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel3)
+                .addContainerGap(57, Short.MAX_VALUE))
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 313, Short.MAX_VALUE))
+        );
+
+        jSplitPane5.setLeftComponent(jPanel7);
 
         javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("root");
         trvCoA.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
@@ -110,90 +244,84 @@ public class PolicyBuilderView extends javax.swing.JPanel {
 
         jToolBar2.setRollover(true);
 
-        jButton4.setText("IF");
-        jButton4.setFocusable(false);
-        jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        jbIf.setText("IF");
+        jbIf.setFocusable(false);
+        jbIf.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jbIf.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jbIf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                jbIfActionPerformed(evt);
             }
         });
-        jToolBar2.add(jButton4);
+        jToolBar2.add(jbIf);
 
-        jButton5.setText("Else");
-        jButton5.setFocusable(false);
-        jButton5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton5.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar2.add(jButton5);
+        jbElse.setText("Else");
+        jbElse.setFocusable(false);
+        jbElse.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jbElse.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jbElse.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbElseActionPerformed(evt);
+            }
+        });
+        jToolBar2.add(jbElse);
 
-        jButton6.setText("Parallel");
-        jButton6.setFocusable(false);
-        jButton6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton6.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar2.add(jButton6);
+        jbDeleteNode.setText("Delete Node");
+        jbDeleteNode.setFocusable(false);
+        jbDeleteNode.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jbDeleteNode.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jbDeleteNode.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbDeleteNodeActionPerformed(evt);
+            }
+        });
+        jToolBar2.add(jbDeleteNode);
 
-        jButton2.setText("Sequencial");
-        jButton2.setFocusable(false);
-        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar2.add(jButton2);
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addComponent(jToolBar2, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+                .addComponent(jToolBar2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
             .addComponent(jScrollPane3)
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
                 .addComponent(jToolBar2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 335, Short.MAX_VALUE))
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE))
         );
 
-        jSplitPane4.setLeftComponent(jPanel3);
+        jSplitPane5.setRightComponent(jPanel8);
 
-        jList3.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Block", "CheckForElephant", "CheckIcmpUdp", "GetNewComerRatio"};
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane4.setViewportView(jList3);
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jSplitPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 307, Short.MAX_VALUE))
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jSplitPane5)
+        );
 
-        jSplitPane4.setRightComponent(jScrollPane4);
+        jSplitPane4.setRightComponent(jPanel6);
 
         jSplitPane3.setBottomComponent(jSplitPane4);
-
-        jButton3.setText("Save");
-
-        jButton7.setText("Delete");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 590, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton7)
-                .addContainerGap())
+            .addComponent(jSplitPane3, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jSplitPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 523, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3)
-                    .addComponent(jButton7))
-                .addContainerGap())
+            .addComponent(jSplitPane3)
         );
 
         jSplitPane2.setRightComponent(jPanel2);
@@ -204,43 +332,60 @@ public class PolicyBuilderView extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jSplitPane2)
+                .addComponent(jSplitPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 609, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jSplitPane2)
-                .addContainerGap())
+            .addComponent(jSplitPane2)
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        
+    private void jbIfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbIfActionPerformed
+
         Operator op = new Operator(Operator.OperatorType.IF, "IF");
         DefaultMutableTreeNode node = (DefaultMutableTreeNode) trvCoA.getLastSelectedPathComponent();
-        
-        node.add(op);
-        trvCoA.updateUI();
 
-        
-    }//GEN-LAST:event_jButton4ActionPerformed
+        if (node == null) {
+            JOptionPane.showMessageDialog(this, "Please first select a node to insert");
+        } else {
+            node.add(op);
+            trvCoA.updateUI();
+        }
+    }//GEN-LAST:event_jbIfActionPerformed
+
+    private void jbElseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbElseActionPerformed
+        Operator op = new Operator(Operator.OperatorType.Else, "ELSE");
+        DefaultMutableTreeNode node = (DefaultMutableTreeNode) trvCoA.getLastSelectedPathComponent();
+
+        if (node == null) {
+            JOptionPane.showMessageDialog(this, "Please first select a node to insert");
+        } else {
+            node.add(op);
+            trvCoA.updateUI();
+        }
+    }//GEN-LAST:event_jbElseActionPerformed
+
+    private void jbDeleteNodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbDeleteNodeActionPerformed
+        deleteSelectedItems(trvCoA);
+    }//GEN-LAST:event_jbDeleteNodeActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JList<String> jList1;
-    private javax.swing.JList<String> jList2;
-    private javax.swing.JList<String> jList3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -249,8 +394,79 @@ public class PolicyBuilderView extends javax.swing.JPanel {
     private javax.swing.JSplitPane jSplitPane2;
     private javax.swing.JSplitPane jSplitPane3;
     private javax.swing.JSplitPane jSplitPane4;
+    private javax.swing.JSplitPane jSplitPane5;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JToolBar jToolBar2;
+    private javax.swing.JButton jbDeleteNode;
+    private javax.swing.JButton jbElse;
+    private javax.swing.JButton jbIf;
+    private javax.swing.JList<String> jlCoaList;
+    private javax.swing.JList<String> jlEvenSpecList;
     private javax.swing.JTree trvCoA;
     // End of variables declaration//GEN-END:variables
+
+    class CustomListSelectionListnerOne extends MouseAdapter {
+
+        public CustomListSelectionListnerOne() {
+            jlCoaList.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent evt) {
+                    if (evt.getClickCount() == 2) {
+                        int index = jlCoaList.getSelectedIndex();
+                        ListModel<String> model = jlCoaList.getModel();
+                        String elementAt = model.getElementAt(index);
+
+                        DefaultMutableTreeNode node = (DefaultMutableTreeNode) trvCoA.getLastSelectedPathComponent();
+                        DefaultMutableTreeNode nodeToAdd = new DefaultMutableTreeNode(elementAt);
+
+                        if (node == null) {
+                            JOptionPane.showMessageDialog(PolicyBuilderView.this, "Please first select a node to insert");
+                        } else {
+                            node.add(nodeToAdd);
+                            trvCoA.updateUI();
+                        }
+
+                    }
+                }
+            });
+        }
+    }
+    
+    class CustomListSelectionListnerTwo extends MouseAdapter {
+
+        public CustomListSelectionListnerTwo() {
+            jlEvenSpecList.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent evt) {
+                    if (evt.getClickCount() == 2) {
+                        int index = jlEvenSpecList.getSelectedIndex();
+                        ListModel<String> model = jlEvenSpecList.getModel();
+                        String elementAt = model.getElementAt(index);
+
+                        DefaultMutableTreeNode node = (DefaultMutableTreeNode) trvCoA.getLastSelectedPathComponent();
+                        DefaultMutableTreeNode nodeToAdd = new DefaultMutableTreeNode(elementAt);
+
+                        if (node == null) {
+                            JOptionPane.showMessageDialog(PolicyBuilderView.this, "Please first select a node to insert");
+                        } else {
+                            node.add(nodeToAdd);
+                            trvCoA.updateUI();
+                        }
+
+                    }
+                }
+            });
+        }
+    }
+
+    protected void deleteSelectedItems(JTree tree) {
+        DefaultMutableTreeNode node;
+        DefaultTreeModel model = (DefaultTreeModel) (tree.getModel());
+        TreePath[] paths = tree.getSelectionPaths();
+        for (int i = 0; i < paths.length; i++) {
+            node = (DefaultMutableTreeNode) (paths[i].getLastPathComponent());
+            model.removeNodeFromParent(node);
+        }
+    }
 }
